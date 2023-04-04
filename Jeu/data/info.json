@@ -2,83 +2,79 @@
     "activite":[
         {
             "id":1,
-            "name":"Usine de voiture",
+            "title":"Usine de voiture",
             "money":50,
             "sociability":20,
-            "ecology":-30
+            "ecology":-30,
+            "theme":"Themes/Usine.tres"
         },
         {
             "id":2,
-            "name":"Menuiserie",
+            "title":"Menuiserie",
             "money":30,
             "sociability":30,
-            "ecology":-10
+            "ecology":-10,
+            "theme":"Themes/Menuiserie.tres"
         },
         {
             "id":3,
-            "name":"Mine d'or",
+            "title":"Mine d'or",
             "money":40,
             "sociability":10,
-            "ecology":-50
+            "ecology":-50,
+            "theme":"Themes/Mine.tres"
         }
     ],
     "amelioration_t1":[
         {
             "id":1,
-            "name":"Bar",
+            "title":"Bar",
             "money":-10,
             "sociability":30,
-            "ecology":-20
+            "ecology":-20,
+            "theme":"Themes/BarAlcool.tres"
         },
         {
             "id":2,
-            "name":"Centre de recyclage",
+            "title":"Centre de recyclage",
             "money":-30,
             "sociability":10,
-            "ecology":40
+            "ecology":40,
+            "theme":"Themes/Centre.tres"
         },
         {
             "id":3,
-            "name":"Agrandir",
+            "title":"Agrandir",
             "money":30,
             "sociability":10,
-            "ecology":-30
+            "ecology":-30,
+            "theme":"Themes/Agrandir.tres"
         }
     ],
     "amelioration_t2":[
         {
             "id":1,
-            "name":"Planter des arbres dans les zones inutilisables",
+            "title":"Planter des arbres dans les zones inutilisables",
             "money":-40,
             "sociability":0,
-            "ecology":50
+            "ecology":50,
+            "theme":"Themes/Planter.tres"
         },
         {
             "id":2,
-            "name":"Agrandir",
+            "title":"Agrandir",
             "money":30,
             "sociability":10,
-            "ecology":-30
+            "ecology":-30,
+            "theme":"Themes/Agrandir.tres"
         },
         {
             "id":3,
-            "name":"Terrain de basket",
+            "title":"Terrain de basket",
             "money":-20,
             "sociability":50,
-            "ecology":-10
-        }
-    ],
-    "couleur":[
-        {
-            "train":"211,171,46",
-            "usine":"137,137,137",
-            "menuiserie":"165,135,40",
-            "mine":"84,84,84",
-            "bar":"222,73,139",
-            "centre":"58,173,45",
-            "arbre":"47,241,24",
-            "basket":"45,165,243"
-
+            "ecology":-10,
+            "theme":"Themes/Basket.tres"
         }
     ]
 }

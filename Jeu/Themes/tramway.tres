@@ -8,4 +8,8 @@ normal_map = ExtResource( 1 )
 region_rect = Rect2( 0, 0, 1200, 1200 )
 
 [resource]
+Button/styles/disabled = SubResource( 1 )
+Button/styles/focus = SubResource( 1 )
+Button/styles/hover = SubResource( 1 )
 Button/styles/normal = SubResource( 1 )
+Button/styles/pressed = SubResource( 1 )

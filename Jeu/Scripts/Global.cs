@@ -1,11 +1,14 @@
 using Godot;
-using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
+using System.IO;
 
 public class Global : Node
 {
-    private int money;
-    private int ecology;
-    private int sociabilite;
+    private int money = 100000;
+    private int ecology = 100;
+    private int sociabilite = 100;
     private Global instance;
 
 
@@ -15,8 +18,31 @@ public class Global : Node
 
     }
 
-    public void retrieveData(){
-     
+    public List<Activite> retrieveDataActivite()
+    {
+        string json = System.IO.File.ReadAllText("data/info.json");
+        JObject jsonData = JsonConvert.DeserializeObject<JObject>(json);
+        JArray activiteArray = (JArray)jsonData.GetValue("activite");
+        List<Activite> activites = activiteArray.ToObject<List<Activite>>();
+        return activites;
+    }
+    public Activite retrieveDataAmelioration_t1(int indexSelected)
+    {
+        string json = System.IO.File.ReadAllText("data/info.json");
+        JObject jsonData = JsonConvert.DeserializeObject<JObject>(json);
+        JArray activiteArray = (JArray)jsonData.GetValue("amelioration_t1");
+        List<Activite> activites = activiteArray.ToObject<List<Activite>>();
+
+        return activites[indexSelected];
+    }
+    public Activite retrieveDataAmelioration_t2(int indexSelected)
+    {
+        string json = System.IO.File.ReadAllText("data/info.json");
+        JObject jsonData = JsonConvert.DeserializeObject<JObject>(json);
+        JArray activiteArray = (JArray)jsonData.GetValue("amelioration_t2");
+        List<Activite> activites = activiteArray.ToObject<List<Activite>>();
+
+        return activites[indexSelected];
     }
 
     public Global getInstance()
