@@ -10,12 +10,30 @@ public class Global : Node
     private int ecology = 100;
     private int sociabilite = 100;
     private Global instance;
+    private int date;
+    private int index; // Index dans le JSON (Activite -> amelioration_t1 -> etc...)
 
 
     public override void _Ready()
     {
+        date = 1900;
+        index = 0;
+    }
 
+    public int getIndex(){
+        return index;
+    }
 
+    public int getDate(){
+        return date;
+    }
+    public void setDate(){
+        this.date += 25;
+        if(this.index < 3){
+            this.index++;
+        }else{
+            this.index = 0;
+        }
     }
 
     public List<Activite> retrieveDataActivite()
@@ -26,23 +44,23 @@ public class Global : Node
         List<Activite> activites = activiteArray.ToObject<List<Activite>>();
         return activites;
     }
-    public Activite retrieveDataAmelioration_t1(int indexSelected)
+    public List<Activite> retrieveDataAmelioration_t1()
     {
         string json = System.IO.File.ReadAllText("data/info.json");
         JObject jsonData = JsonConvert.DeserializeObject<JObject>(json);
         JArray activiteArray = (JArray)jsonData.GetValue("amelioration_t1");
         List<Activite> activites = activiteArray.ToObject<List<Activite>>();
 
-        return activites[indexSelected];
+        return activites;
     }
-    public Activite retrieveDataAmelioration_t2(int indexSelected)
+    public List<Activite> retrieveDataAmelioration_t2()
     {
         string json = System.IO.File.ReadAllText("data/info.json");
         JObject jsonData = JsonConvert.DeserializeObject<JObject>(json);
         JArray activiteArray = (JArray)jsonData.GetValue("amelioration_t2");
         List<Activite> activites = activiteArray.ToObject<List<Activite>>();
 
-        return activites[indexSelected];
+        return activites;
     }
 
     public Global getInstance()
