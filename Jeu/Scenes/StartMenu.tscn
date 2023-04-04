@@ -76,8 +76,8 @@ text = "JOUER"
 [node name="btnQuit" type="Button" parent="Panel"]
 margin_left = 562.0
 margin_top = 588.0
-margin_right = 1411.0
-margin_bottom = 768.0
+margin_right = 1387.0
+margin_bottom = 748.0
 theme = SubResource( 8 )
 text = "QUITTER"
 
