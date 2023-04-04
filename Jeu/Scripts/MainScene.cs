@@ -96,12 +96,12 @@ public class MainScene : Node2D
 
     public void onActivitePressed(String themeActivit, Button btnActivite, Button myButton, int id)
     {
-        myButton.Modulate = new Color(1, 59, 0);
         Color backgroundColor = myButton.Modulate;
         // Recuperer position du bouton pour recuperer les bouton autour de lui
         int position = Convert.ToInt32(myButton.Name.Split('n')[1]);
         Theme theme = GD.Load<Theme>("res://" + themeActivit);
-        colorRandomCase(position, theme);
+        myButton.Theme = theme;
+        colorRandom(position, theme);
         clearGridContainer();
         pnlChooseActivite.Visible = false;
     }
@@ -163,7 +163,7 @@ public class MainScene : Node2D
     /*
         Colorier de manière random les cases
     */
-    public void colorRandomCase(int position, Theme theme)
+    public void colorRandom(int position, Theme theme)
     {
         Random random = new Random();
         int numberButtomColor = random.Next(1, 6);
@@ -174,7 +174,7 @@ public class MainScene : Node2D
             if (!listButton.Contains(number))
             {
                 listButton.Add(number);
-                if (number < listButton.Count && !verifiyIfButtonsTramWay(getButtons(position)[number]))
+                if (number < listButton.Count && verifyColor(getButtons(position)[number]) && !verifiyIfButtonsTramWay(getButtons(position)[number]))
                 {
                     getButtons(position)[number].Theme = theme;
                 }
@@ -201,6 +201,7 @@ public class MainScene : Node2D
     public Boolean verifyColor(Button myButton)
     {
         Color backgroundColor = myButton.Modulate;
+
         if (backgroundColor.r == 1 && backgroundColor.g == 1 && backgroundColor.b == 1)
         {
             return true;
