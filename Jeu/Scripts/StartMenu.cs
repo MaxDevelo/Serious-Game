@@ -18,4 +18,11 @@ public class StartMenu : Node2D
 //  {
 //      
 //  }
+    public void _on_btnQuit_pressed()
+    {
+        GetTree().Quit();
+    }
+    public void _on_btnPlay_pressed(){
+        GetTree().ChangeScene("res://Scenes/MainScene.tscn");
+    }
 }
