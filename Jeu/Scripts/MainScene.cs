@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using static Godot.Control;
 
 public class MainScene : Node2D
@@ -44,53 +45,57 @@ public class MainScene : Node2D
 
     public void onButtonPressed(Button myButton)
     {
-        myButton.Modulate = new Color(1, 59, 0);
-        Color backgroundColor = myButton.Modulate;
-        // Recuperer position du bouton pour recuperer les bouton autour de lui
-        int position = Convert.ToInt32(myButton.Name.Split('n')[1]);
+        if (verifyColor(myButton))
+        {
+            myButton.Modulate = new Color(1, 59, 0);
+            Color backgroundColor = myButton.Modulate;
+            // Recuperer position du bouton pour recuperer les bouton autour de lui
+            int position = Convert.ToInt32(myButton.Name.Split('n')[1]);
+            colorRandomCase(position);
+        }
 
-        // Recuperer les boutons autour de lui
+    }
+    public List<Button> getButtons(int position)
+    {
+        List<Button> listButton = new List<Button>();
         Button buttonTop = GetNode<Button>("pnlMain/gridMap/Button" + (position - 10));
+        listButton.Add(buttonTop);
         Button buttonBottom = GetNode<Button>("pnlMain/gridMap/Button" + (position + 10));
+        listButton.Add(buttonBottom);
         Button buttonLeft = GetNode<Button>("pnlMain/gridMap/Button" + (position - 1));
+        listButton.Add(buttonLeft);
         Button buttonRight = GetNode<Button>("pnlMain/gridMap/Button" + (position + 1));
+        listButton.Add(buttonRight);
         // Recuperer les boutons en diagonale
         Button buttonTopLeft = GetNode<Button>("pnlMain/gridMap/Button" + (position - 11));
+        listButton.Add(buttonTopLeft);
         Button buttonTopRight = GetNode<Button>("pnlMain/gridMap/Button" + (position - 9));
+        listButton.Add(buttonTopRight);
         Button buttonBottomLeft = GetNode<Button>("pnlMain/gridMap/Button" + (position + 9));
+        listButton.Add(buttonBottomLeft);
         Button buttonBottomRight = GetNode<Button>("pnlMain/gridMap/Button" + (position + 11));
+        listButton.Add(buttonBottomRight);
+        return listButton;
+    }
+    public void colorRandomCase(int position)
+    {
 
-        if (verifyColor(buttonTop))
+
+        Random random = new Random();
+        int numberButtomColor = random.Next(1, 6);
+        List<int> listButton = new List<int>();
+        for (int i = 0; i < getButtons(position).Count; i++)
         {
-            buttonTop.Modulate = new Color(1, 59, 0);
-        }
-        if (verifyColor(buttonBottom))
-        {
-            buttonBottom.Modulate = new Color(1, 59, 0);
-        }
-        if (verifyColor(buttonLeft))
-        {
-            buttonLeft.Modulate = new Color(1, 59, 0);
-        }
-        if (verifyColor(buttonRight))
-        {
-            buttonRight.Modulate = new Color(1, 59, 0);
-        }
-        if (verifyColor(buttonTopLeft))
-        {
-            buttonTopLeft.Modulate = new Color(1, 59, 0);
-        }
-        if (verifyColor(buttonTopRight))
-        {
-            buttonTopRight.Modulate = new Color(1, 59, 0);
-        }
-        if (verifyColor(buttonBottomLeft))
-        {
-            buttonBottomLeft.Modulate = new Color(1, 59, 0);
-        }
-        if (verifyColor(buttonBottomRight))
-        {
-            buttonBottomRight.Modulate = new Color(1, 59, 0);
+            int number = random.Next(0, 7);
+            if (!listButton.Contains(number))
+            {
+                listButton.Add(number);
+                if (verifyColor(getButtons(position)[number]))
+                {
+                    getButtons(position)[number].Modulate = new Color(1, 59, 0);
+                }
+
+            }
         }
 
     }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/MainScene.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/Bar.tscn" type="PackedScene" id=2]
@@ -14,8 +14,6 @@ bg_color = Color( 0.294118, 0.294118, 0.294118, 1 )
 
 [sub_resource type="Theme" id=4]
 Panel/styles/panel = SubResource( 3 )
-
-[sub_resource type="Theme" id=5]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -35,7 +33,6 @@ margin_left = 5.0
 margin_top = -6.0
 margin_right = 1068.0
 margin_bottom = 1071.0
-theme = SubResource( 5 )
 columns = 20
 
 [node name="Bar" parent="." instance=ExtResource( 2 )]
