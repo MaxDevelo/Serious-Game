@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Color/tramway.jpg" type="Texture" id=1]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 1 )
+normal_map = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 1200, 1200 )
+
+[resource]
+Button/styles/normal = SubResource( 1 )

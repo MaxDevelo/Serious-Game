@@ -31,7 +31,17 @@ public class MainScene : Node2D
         {
             // Create a new button
             Button myButton = new Button();
-            myButton.Modulate = new Color(0, 0, 0);
+            // Charger le thème à partir du fichier de ressources
+            Theme theme;
+            if (i > 50 && i <= 60)
+            {
+                theme = GD.Load<Theme>("res://Themes/tramway.tres");
+            }
+            else
+            {
+                theme = GD.Load<Theme>("res://Themes/green.tres");
+            }
+            myButton.Theme = theme;
             myButton.Name = "Button" + i;
             myGridContainer.AddChild(myButton);
 
@@ -41,6 +51,8 @@ public class MainScene : Node2D
             myButton.RectMinSize = new Vector2(50, 50);
             myButton.Connect("pressed", this, "onButtonPressed", new Godot.Collections.Array() { myButton });
         }
+
+
     }
 
     public void onButtonPressed(Button myButton)
