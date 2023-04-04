@@ -10,9 +10,12 @@ public class MainScene : Node2D
     private Global global;
     private Panel pnlChooseActivite;
     private List<Button> buttonsTramWay;
+    private List<Boolean> buttonsFree;
+    private Activite currentlyActivite; // Sauvegarder Activite actuel
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        buttonsFree = new List<Boolean>();
         buttonsTramWay = new List<Button>();
         // getInstance of global
         global = GetNode<Global>("/root/Global");
@@ -33,6 +36,7 @@ public class MainScene : Node2D
         myGridContainer.Columns = 10;
         for (int i = 1; i <= 100; i++)
         {
+            buttonsFree.Add(true);
             // Create a new button
             Button myButton = new Button();
             // Charger le thème à partir du fichier de ressources
@@ -55,7 +59,7 @@ public class MainScene : Node2D
             myButton.SizeFlagsVertical = (int)SizeFlags.ExpandFill;
             myButton.RectMinSize = new Vector2(50, 50);
             // Generate Button Pressed with function
-            myButton.Connect("pressed", this, "onButtonPressed", new Godot.Collections.Array() { myButton });
+            myButton.Connect("pressed", this, "onButtonPressed", new Godot.Collections.Array() { myButton, i });
         }
 
 
@@ -63,10 +67,11 @@ public class MainScene : Node2D
     /*
         Clique sur une case
     */
-    public void onButtonPressed(Button myButton)
+    public void onButtonPressed(Button myButton, int index)
     {
-        if (verifyColor(myButton))
+        if (buttonsFree[index])
         {
+            buttonsFree[index] = false;
             pnlChooseActivite.Visible = true;
             Button btnClose = GetNode<Button>("pnlChooseActivite/btnClose");
             GridContainer gridActivite = GetNode<GridContainer>("pnlChooseActivite/gridActivite");
@@ -86,6 +91,7 @@ public class MainScene : Node2D
                 if (btnActivite.GetSignalConnectionList("pressed").Count == 0)
                 {
                     Activite activite = global.retrieveDataActivite()[i - 1];
+                    currentlyActivite = activite;
                     btnActivite.Connect("pressed", this, "onActivitePressed", new Godot.Collections.Array() { activite.Theme, btnActivite, myButton, global.retrieveDataActivite()[i - 1].Id });
                 }
                 gridActivite.AddChild(btnActivite);
@@ -101,7 +107,11 @@ public class MainScene : Node2D
         int position = Convert.ToInt32(myButton.Name.Split('n')[1]);
         Theme theme = GD.Load<Theme>("res://" + themeActivit);
         myButton.Theme = theme;
+        GD.Print("Money: " + currentlyActivite.Money + " Ecology: " + currentlyActivite.Ecology + " Sociability: " + currentlyActivite.Sociability);
+        global.setModificationBar(currentlyActivite.Money, currentlyActivite.Ecology, currentlyActivite.Sociability);
+        setModificationBar(global.getMoney(), global.getEcology(), global.getSociabilite());
         colorRandom(position, theme);
+
         clearGridContainer();
         pnlChooseActivite.Visible = false;
     }
@@ -118,45 +128,71 @@ public class MainScene : Node2D
         List<Button> listButton = new List<Button>();
         if (position - 10 > 0 && position - 10 < 100)
         {
-            // Vérifier que le Button existe avant de l'ajouter
-            Button buttonTop = GetNode<Button>("pnlMain/gridMap/Button" + (position - 10));
-            listButton.Add(buttonTop);
+            if (buttonsFree[position - 10])
+            {
+                // Vérifier que le Button existe avant de l'ajouter
+                Button buttonTop = GetNode<Button>("pnlMain/gridMap/Button" + (position - 10));
+                listButton.Add(buttonTop);
+            }
         }
-        if (position + 10 > 0 && position + 10 < 100 && position + 10 != 100)
+        if (position + 10 > 0 && position + 10 < 100 && buttonsFree[position - 10])
         {
-            Button buttonBottom = GetNode<Button>("pnlMain/gridMap/Button" + (position + 10));
-            listButton.Add(buttonBottom);
+            if (buttonsFree[position + 10])
+            {
+                ;
+                Button buttonBottom = GetNode<Button>("pnlMain/gridMap/Button" + (position + 10));
+                listButton.Add(buttonBottom);
+            }
         }
         if (position - 1 > 0 && position - 1 < 100)
         {
-            Button buttonLeft = GetNode<Button>("pnlMain/gridMap/Button" + (position - 1));
-            listButton.Add(buttonLeft);
+            if (buttonsFree[position - 1])
+            {
+                ;
+                Button buttonLeft = GetNode<Button>("pnlMain/gridMap/Button" + (position - 1));
+                listButton.Add(buttonLeft);
+            }
         }
         if (position + 1 > 0 && position + 1 < 100)
         {
-            Button buttonRight = GetNode<Button>("pnlMain/gridMap/Button" + (position + 1));
-            listButton.Add(buttonRight);
+            if (buttonsFree[position + 1])
+            {
+                Button buttonRight = GetNode<Button>("pnlMain/gridMap/Button" + (position + 1));
+                listButton.Add(buttonRight);
+            }
         }
         // Recuperer les boutons en diagonale
         if (position - 11 > 0 && position - 11 < 100)
         {
-            Button buttonTopLeft = GetNode<Button>("pnlMain/gridMap/Button" + (position - 11));
-            listButton.Add(buttonTopLeft);
+            if (buttonsFree[position - 11])
+            {
+                Button buttonTopLeft = GetNode<Button>("pnlMain/gridMap/Button" + (position - 11));
+                listButton.Add(buttonTopLeft);
+            }
         }
         if (position - 9 > 0 && position - 9 < 100)
         {
-            Button buttonTopRight = GetNode<Button>("pnlMain/gridMap/Button" + (position - 9));
-            listButton.Add(buttonTopRight);
+            if (buttonsFree[position - 9])
+            {
+                Button buttonTopRight = GetNode<Button>("pnlMain/gridMap/Button" + (position - 9));
+                listButton.Add(buttonTopRight);
+            }
         }
         if (position + 9 > 0 && position + 9 < 100)
         {
-            Button buttonBottomLeft = GetNode<Button>("pnlMain/gridMap/Button" + (position + 9));
-            listButton.Add(buttonBottomLeft);
+            if (buttonsFree[position + 9])
+            {
+                Button buttonBottomLeft = GetNode<Button>("pnlMain/gridMap/Button" + (position + 9));
+                listButton.Add(buttonBottomLeft);
+            }
         }
         if (position + 11 > 0 && position + 11 < 100)
         {
-            Button buttonBottomRight = GetNode<Button>("pnlMain/gridMap/Button" + (position + 11));
-            listButton.Add(buttonBottomRight);
+            if (buttonsFree[position + 11])
+            {
+                Button buttonBottomRight = GetNode<Button>("pnlMain/gridMap/Button" + (position + 11));
+                listButton.Add(buttonBottomRight);
+            }
         }
         return listButton;
     }
@@ -168,15 +204,19 @@ public class MainScene : Node2D
         Random random = new Random();
         int numberButtomColor = random.Next(1, 6);
         List<int> listButton = new List<int>();
-        for (int i = 0; i < getButtons(position).Count; i++)
+        List<Button> buttons = getButtons(position);
+        GD.Print(buttons.Count);
+        for (int i = 0; i < buttons.Count; i++)
         {
             int number = random.Next(0, 7);
             if (!listButton.Contains(number))
             {
                 listButton.Add(number);
-                if (number < listButton.Count && verifyColor(getButtons(position)[number]) && !verifiyIfButtonsTramWay(getButtons(position)[number]))
+                if (number < listButton.Count && !verifiyIfButtonsTramWay(buttons[number]))
                 {
-                    getButtons(position)[number].Theme = theme;
+                    buttonsFree[number] = false;
+                    // Construction en méttant une couleur
+                    buttons[number].Theme = theme;
                 }
             }
         }
@@ -195,19 +235,7 @@ public class MainScene : Node2D
         }
         return false;
     }
-    /*
-    Vérifier la couleur de la case
-    */
-    public Boolean verifyColor(Button myButton)
-    {
-        Color backgroundColor = myButton.Modulate;
 
-        if (backgroundColor.r == 1 && backgroundColor.g == 1 && backgroundColor.b == 1)
-        {
-            return true;
-        }
-        return false;
-    }
     /*
         Modification des Bars
     */

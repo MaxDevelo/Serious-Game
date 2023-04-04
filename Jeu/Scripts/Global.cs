@@ -53,8 +53,33 @@ public class Global : Node
         }
         return instance;
     }
-
-
+    public void setModificationBar(int money, int ecology, int sociabilite)
+    {
+        if (this.money + money < 0)
+        {
+            this.money = 0;
+        }
+        else
+        {
+            this.money += money;
+        }
+        if (this.ecology + ecology < 0)
+        {
+            this.ecology = 0;
+        }
+        else
+        {
+            this.ecology += ecology;
+        }
+        if (this.sociabilite + sociabilite < 0)
+        {
+            this.sociabilite = 0;
+        }
+        else
+        {
+            this.sociabilite += sociabilite;
+        }
+    }
     public int getMoney()
     {
         return money;

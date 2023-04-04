@@ -35,10 +35,7 @@ public class Bar : Panel
     {
         // Display Money
         Label lblMoney = GetNode("pnlEconomy/lblMoney") as Label;
-        string[] parts = lblMoney.Text.Split('€');
-        long money = Convert.ToInt64(parts[0]);
-        money += value;
-        lblMoney.Text = money.ToString() + "€";
+        lblMoney.Text = value.ToString() + "€";
 
     }
 
@@ -46,10 +43,7 @@ public class Bar : Panel
     {
         // Display Ecology
         Label lblEcology= GetNode("pnlEcology/lblEcology") as Label;
-        string[] parts = lblEcology.Text.Split('%');
-        long ecology = Convert.ToInt64(parts[0]);
-        ecology += value;
-        lblEcology.Text = ecology.ToString() + "%";
+        lblEcology.Text = value.ToString() + "%";
 
     }
 
@@ -57,9 +51,6 @@ public class Bar : Panel
     {
         // Display Sociabilite
         Label lblSociabilite= GetNode("pnlSociabilite/lblSociabilite") as Label;
-        string[] parts = lblSociabilite.Text.Split('%');
-        long sociabilite = Convert.ToInt64(parts[0]);
-        sociabilite += value;
-        lblSociabilite.Text = sociabilite.ToString() + "%";
+        lblSociabilite.Text = value.ToString() + "%";
     }
 }
