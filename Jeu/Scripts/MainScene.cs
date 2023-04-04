@@ -46,10 +46,13 @@ public class MainScene : Node2D
                 theme = GD.Load<Theme>("res://Themes/tramway.tres");
                 buttonsTramWay.Add(myButton);
             }
-            else
+            else if(i < 50)
             {
+                theme = GD.Load<Theme>("res://Themes/green_tree.tres");
+            }else{
                 theme = GD.Load<Theme>("res://Themes/green.tres");
             }
+
             myButton.Theme = theme;
             myButton.Name = "Button" + i;
             myGridContainer.AddChild(myButton);
