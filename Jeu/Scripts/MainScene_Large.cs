@@ -105,33 +105,33 @@ public class MainScene_Large : Node2D
 
 
 
-        String text = "Bonjour, je suis le maire du quartier de Koenigshoffen-Est. Je suis là pour vous aider à gérer votre quartier !";
-        for (int i = 0; i < text.Length; i++)
-        {
-            pnlInfoMaire.Theme = theme_open;
-            GetNode<Label>("pnlInfoMaire/pnlInfo/Label").Text += text[i];
-            await Task.Delay((int)10f);
-            pnlInfoMaire.Theme = theme_base;
-        }
-        await Task.Delay((int)3000f);
-        text = "Afin de de pas vous perdre, je vais vous expliquer les différentes actions que vous pouvez faire.";
-        GetNode<Label>("pnlInfoMaire/pnlInfo/Label").Text = "";
-        for (int i = 0; i < text.Length; i++)
-        {
-            GetNode<Label>("pnlInfoMaire/pnlInfo/Label").Text += text[i];
-            await Task.Delay((int)10f);
-            pnlInfoMaire.Theme = theme_base;
-        }
-        await Task.Delay((int)3000f);
-        text = "Vous avez juste à cliquer sur une case pour voir les actions possibles et il suffit de choisir, mais faites attention, car votre choix a un impact sur les jauges.";
-        GetNode<Label>("pnlInfoMaire/pnlInfo/Label").Text = "";
-        for (int i = 0; i < text.Length; i++)
-        {
-            GetNode<Label>("pnlInfoMaire/pnlInfo/Label").Text += text[i];
-            pnlInfoMaire.Theme = theme_open;
-            await Task.Delay((int)10f);
-            pnlInfoMaire.Theme = theme_base;
-        }
+        String text = "Bonjour, je suis votre secrétaire M. Assog, responsable du quartier de Koenigshoffen-Est. Je suis là pour vous aider à gérer votre quartier !";
+		for (int i = 0; i < text.Length; i++)
+		{
+			pnlInfoMaire.Theme = theme_open;
+			GetNode<Label>("pnlInfoMaire/pnlInfo/Label").Text += text[i];
+			await Task.Delay((int)10f);
+			pnlInfoMaire.Theme = theme_base;
+		}
+		await Task.Delay((int)3000f);
+		text = "Afin de ne pas vous perdre, je vais vous expliquer les différentes actions que vous pouvez faire.";
+		GetNode<Label>("pnlInfoMaire/pnlInfo/Label").Text = "";
+		for (int i = 0; i < text.Length; i++)
+		{
+			GetNode<Label>("pnlInfoMaire/pnlInfo/Label").Text += text[i];
+			await Task.Delay((int)10f);
+			pnlInfoMaire.Theme = theme_base;
+		}
+		await Task.Delay((int)3000f);
+		text = "Vous avez juste à cliquer sur une case pour voir les actions possibles ; ensuite, il suffit de choisir une. Faites attention, car votre choix a un impact sur les jauges!";
+		GetNode<Label>("pnlInfoMaire/pnlInfo/Label").Text = "";
+		for (int i = 0; i < text.Length; i++)
+		{
+			GetNode<Label>("pnlInfoMaire/pnlInfo/Label").Text += text[i];
+			pnlInfoMaire.Theme = theme_open;
+			await Task.Delay((int)10f);
+			pnlInfoMaire.Theme = theme_base;
+		}
 
     }
 

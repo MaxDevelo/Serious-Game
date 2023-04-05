@@ -92,19 +92,13 @@ public class MainScene : Node2D
 		 //hover du btn 
 		if (@event is InputEventMouseMotion motion)
 		{
-			// Vector2 buttonSize = GetViewportRect().Size; // Get the size of the button node
-			// Rect2 buttonRect = new Rect2(GlobalPosition, buttonSize); // Calculate the button's bounding rectangle
-			// if (buttonRect.HasPoint(motion.Position)) // Check if the mouse cursor is inside the button
-			// {
-			//     GD.Print("ooooo");
-			// }
+			
 			foreach (Button button in GetNode<GridContainer>("pnlMain/gridMap").GetChildren())
 			{
 				Rect2 buttonRect = new Rect2(button.RectGlobalPosition, button.RectSize);
 				if (buttonRect.HasPoint(motion.Position))
 				{
 					String x= button.Theme.ResourcePath.Substring(13, button.Theme.ResourcePath.Length-18);
-					GD.Print("Button name: " + x);
 					Label label = GetNode<Label>("Label");
 					label.Text = x;
 					label.RectGlobalPosition = new Vector2(motion.Position.x+15, motion.Position.y-15);
@@ -127,7 +121,7 @@ public class MainScene : Node2D
 
 
 
-		String text = "Bonjour, je suis le maire du quartier de Koenigshoffen-Est. Je suis là pour vous aider à gérer votre quartier !";
+		String text = "Bonjour, je suis votre secrétaire M. Assog, responsable du quartier de Koenigshoffen-Est. Je suis là pour vous aider à gérer votre quartier !";
 		for (int i = 0; i < text.Length; i++)
 		{
 			pnlInfoMaire.Theme = theme_open;
@@ -136,7 +130,7 @@ public class MainScene : Node2D
 			pnlInfoMaire.Theme = theme_base;
 		}
 		await Task.Delay((int)3000f);
-		text = "Afin de pas vous perdre, je vais vous expliquer les différentes actions que vous pouvez faire.";
+		text = "Afin de ne pas vous perdre, je vais vous expliquer les différentes actions que vous pouvez faire.";
 		GetNode<Label>("pnlInfoMaire/pnlInfo/Label").Text = "";
 		for (int i = 0; i < text.Length; i++)
 		{
@@ -145,7 +139,7 @@ public class MainScene : Node2D
 			pnlInfoMaire.Theme = theme_base;
 		}
 		await Task.Delay((int)3000f);
-		text = "Vous avez juste à cliquer sur une case pour voir les actions possibles et il suffit de choisir, mais faites attention, car votre choix a un impact sur les jauges.";
+		text = "Vous avez juste à cliquer sur une case pour voir les actions possibles ; ensuite, il suffit de choisir une. Faites attention, car votre choix a un impact sur les jauges!";
 		GetNode<Label>("pnlInfoMaire/pnlInfo/Label").Text = "";
 		for (int i = 0; i < text.Length; i++)
 		{
@@ -428,7 +422,6 @@ public class MainScene : Node2D
 				selectedButton = buttons[number];
 				break;
 			} while (!buttonsFree[number]);
-			GD.Print(verifiyIfButtonsTramWay(selectedButton));
 			if (!verifiyIfButtonsTramWay(selectedButton))
 			{
 				buttonsFree[number] = false;
