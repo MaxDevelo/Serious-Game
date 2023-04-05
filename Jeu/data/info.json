@@ -3,7 +3,7 @@
         {
             "id":1,
             "isActivity":true,
-            "title":"Usine de voiture",
+            "title":"Usine de Biere",
             "money":50,
             "sociability":20,
             "ecology":-30,

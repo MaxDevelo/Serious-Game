@@ -7,7 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using static Godot.Control;
 
-public class MainScene : Node2D
+public class MainScene_Medium : Node2D
 {
 
 
@@ -77,7 +77,14 @@ public class MainScene : Node2D
             }
             else
             {
+                if (GetNode<Button>("pnlEchap/btnQuit").IsConnected("pressed", this, "_on_btnQuit_pressed"))
+                    GetNode<Button>("pnlEchap/btnQuit").Disconnect("pressed", this, "_on_btnQuit_pressed");
+
                 GetNode<Button>("pnlEchap/btnQuit").Connect("pressed", this, "_on_btnQuit_pressed");
+                //Verifier si il ets deja connecté
+                if (GetNode<Button>("pnlEchap/btnRestart").IsConnected("pressed", this, "_on_btnRestart_pressed"))
+                    GetNode<Button>("pnlEchap/btnRestart").Disconnect("pressed", this, "_on_btnRestart_pressed");
+
                 GetNode<Button>("pnlEchap/btnRestart").Connect("pressed", this, "_on_btnRestart_pressed");
                 pnlEchap.Visible = true;
             }
@@ -107,7 +114,7 @@ public class MainScene : Node2D
             pnlInfoMaire.Theme = theme_base;
         }
         await Task.Delay((int)3000f);
-        text = "Afin de pas vous perdre, je vais vous expliquer les différentes actions que vous pouvez faire.";
+        text = "Afin de de pas vous perdre, je vais vous expliquer les différentes actions que vous pouvez faire.";
         GetNode<Label>("pnlInfoMaire/pnlInfo/Label").Text = "";
         for (int i = 0; i < text.Length; i++)
         {
@@ -145,32 +152,32 @@ public class MainScene : Node2D
 
 
     /*
-    * This method will generate a map of 100 buttons to create map
+    * This method will generate a map of 200 buttons to create map
     */
     public void generateMap()
     {
         GridContainer myGridContainer = GetNode<GridContainer>("pnlMain/gridMap");
-        myGridContainer.Columns = 10;
-        for (int i = 1; i <= 100; i++)
+        myGridContainer.Columns = 20;
+        for (int i = 1; i <= 400; i++)
         {
             buttonsFree.Add(true);
             // Create a new button
             Button myButton = new Button();
             // Charger le thème à partir du fichier de ressources
             Theme theme;
-            if (i > 50 && i <= 60)
+
+            if (i > 200 && i <= 220)
             {
                 theme = GD.Load<Theme>("res://Themes/tramway.tres");
                 myButton.Disabled = true;
                 buttonsTramWay.Add(myButton);
             }
-            else if (i < 50)
+            else if (i < 140)
             {
                 theme = GD.Load<Theme>("res://Themes/green_tree.tres");
             }
             else
             {
-
                 theme = GD.Load<Theme>("res://Themes/green.tres");
             }
 
@@ -304,74 +311,91 @@ public class MainScene : Node2D
     public List<Button> getButtons(int position)
     {
         List<Button> listButton = new List<Button>();
-        if (position - 10 > 0 && position - 10 < 100)
+        if (position - 20 >= 0 && position - 20 < 400 && buttonsFree[position - 20])
         {
-            if (buttonsFree[position - 10])
-            {
-                // Vérifier que le Button existe avant de l'ajouter
-                Button buttonTop = GetNode<Button>("pnlMain/gridMap/Button" + (position - 10));
-                listButton.Add(buttonTop);
-            }
+            // Vérifier que le Button existe avant de l'ajouter
+            Button buttonTop = GetNode<Button>("pnlMain/gridMap/Button" + (position - 20));
+            listButton.Add(buttonTop);
         }
-        if (position + 10 > 0 && position + 10 < 100 && buttonsFree[position - 10])
+        if (position + 20 >= 0 && position + 20 < 400 && buttonsFree[position + 20])
         {
-            if (buttonsFree[position + 10])
-            {
-                ;
-                Button buttonBottom = GetNode<Button>("pnlMain/gridMap/Button" + (position + 10));
-                listButton.Add(buttonBottom);
-            }
+            Button buttonBottom = GetNode<Button>("pnlMain/gridMap/Button" + (position + 20));
+            listButton.Add(buttonBottom);
         }
-        if (position - 1 > 0 && position - 1 < 100)
+        if (position - 1 >= 0 && position - 1 < 400 && buttonsFree[position - 1])
         {
-            if (buttonsFree[position - 1])
-            {
-                ;
-                Button buttonLeft = GetNode<Button>("pnlMain/gridMap/Button" + (position - 1));
-                listButton.Add(buttonLeft);
-            }
+            Button buttonLeft = GetNode<Button>("pnlMain/gridMap/Button" + (position - 1));
+            listButton.Add(buttonLeft);
         }
-        if (position + 1 > 0 && position + 1 < 100)
+        if (position + 1 >= 0 && position + 1 < 400 && buttonsFree[position + 1])
         {
-            if (buttonsFree[position + 1])
-            {
-                Button buttonRight = GetNode<Button>("pnlMain/gridMap/Button" + (position + 1));
-                listButton.Add(buttonRight);
-            }
+            Button buttonRight = GetNode<Button>("pnlMain/gridMap/Button" + (position + 1));
+            listButton.Add(buttonRight);
         }
         // Recuperer les boutons en diagonale
-        if (position - 11 > 0 && position - 11 < 100)
+        if (position - 19 >= 0 && position - 19 < 400 && buttonsFree[position - 19])
         {
-            if (buttonsFree[position - 11])
-            {
-                Button buttonTopLeft = GetNode<Button>("pnlMain/gridMap/Button" + (position - 11));
-                listButton.Add(buttonTopLeft);
-            }
+            Button buttonTopLeft = GetNode<Button>("pnlMain/gridMap/Button" + (position - 19));
+            listButton.Add(buttonTopLeft);
         }
-        if (position - 9 > 0 && position - 9 < 100)
+        if (position - 21 >= 0 && position - 21 < 400 && buttonsFree[position - 21])
         {
-            if (buttonsFree[position - 9])
-            {
-                Button buttonTopRight = GetNode<Button>("pnlMain/gridMap/Button" + (position - 9));
-                listButton.Add(buttonTopRight);
-            }
+            Button buttonTopRight = GetNode<Button>("pnlMain/gridMap/Button" + (position - 21));
+            listButton.Add(buttonTopRight);
         }
-        if (position + 9 > 0 && position + 9 < 100)
+        if (position + 19 >= 0 && position + 19 < 400 && buttonsFree[position + 19])
         {
-            if (buttonsFree[position + 9])
-            {
-                Button buttonBottomLeft = GetNode<Button>("pnlMain/gridMap/Button" + (position + 9));
-                listButton.Add(buttonBottomLeft);
-            }
+            Button buttonBottomLeft = GetNode<Button>("pnlMain/gridMap/Button" + (position + 19));
+            listButton.Add(buttonBottomLeft);
         }
-        if (position + 11 > 0 && position + 11 < 100)
+        if (position + 21 >= 0 && position + 21 < 400 && buttonsFree[position + 21])
         {
-            if (buttonsFree[position + 11])
-            {
-                Button buttonBottomRight = GetNode<Button>("pnlMain/gridMap/Button" + (position + 11));
-                listButton.Add(buttonBottomRight);
-            }
+            Button buttonBottomRight = GetNode<Button>("pnlMain/gridMap/Button" + (position + 21));
+
         }
+        // 2 cases autour
+        if (position - 40 >= 0 && position - 40 < 400 && buttonsFree[position - 40])
+        {
+            Button buttonTop = GetNode<Button>("pnlMain/gridMap/Button" + (position - 40));
+            listButton.Add(buttonTop);
+        }
+        if (position + 40 >= 0 && position + 40 < 400 && buttonsFree[position + 40])
+        {
+            Button buttonBottom = GetNode<Button>("pnlMain/gridMap/Button" + (position + 40));
+            listButton.Add(buttonBottom);
+        }
+        if (position - 2 >= 0 && position - 2 < 400 && buttonsFree[position - 2])
+        {
+            Button buttonLeft = GetNode<Button>("pnlMain/gridMap/Button" + (position - 2));
+            listButton.Add(buttonLeft);
+        }
+        if (position + 2 >= 0 && position + 2 < 400 && buttonsFree[position + 2])
+        {
+            Button buttonRight = GetNode<Button>("pnlMain/gridMap/Button" + (position + 2));
+            listButton.Add(buttonRight);
+        }
+        // Diagonal
+        if (position - 38 >= 0 && position - 38 < 400 && buttonsFree[position - 38])
+        {
+            Button buttonTopLeft = GetNode<Button>("pnlMain/gridMap/Button" + (position - 38));
+            listButton.Add(buttonTopLeft);
+        }
+        if (position - 42 >= 0 && position - 42 < 400 && buttonsFree[position - 42])
+        {
+            Button buttonTopRight = GetNode<Button>("pnlMain/gridMap/Button" + (position - 42));
+            listButton.Add(buttonTopRight);
+        }
+        if (position + 38 >= 0 && position + 38 < 400 && buttonsFree[position + 38])
+        {
+            Button buttonBottomLeft = GetNode<Button>("pnlMain/gridMap/Button" + (position + 38));
+            listButton.Add(buttonBottomLeft);
+        }
+        if (position + 42 >= 0 && position + 42 < 400 && buttonsFree[position + 42])
+        {
+            Button buttonBottomRight = GetNode<Button>("pnlMain/gridMap/Button" + (position + 42));
+            listButton.Add(buttonBottomRight);
+        }
+
         return listButton;
     }
     /*
@@ -398,6 +422,9 @@ public class MainScene : Node2D
             selectedButton.Theme = theme;
         }
     }
+
+
+
     /*
         Vérifier qu'il s'agit ou non du chemin de fer
     */

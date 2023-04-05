@@ -16,6 +16,10 @@ public class Configuration : Node2D
         
          GetTree().ChangeScene("res://Scenes/MainScene.tscn");
     }
+    void _on_BtnMap2_pressed(){
+        
+         GetTree().ChangeScene("res://Scenes/MainScene_Medium.tscn");
+    }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 //  public override void _Process(float delta)
