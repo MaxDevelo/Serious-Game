@@ -247,7 +247,44 @@ Décrire ici les idées de fonctionnalités additionnelles. Cette partie ne doit
 ---
 ## Procédures d'installation et d'exécution
 
+### **Windows**
+Pour un bon fonctionnement du jeu, merci d'utiliser une résolution d'écran de `1920x1080` et une mise à l'échelle de 100%. 
+Pour vérifier ces paramètres, allez dans `Paramètres > Système > Ecran`
+- Télécharger le dossier [Windows](./Executables/Windows/)
+- Lancez **Game.exe**
+- Amusez-vous
+---
+### **Linux**
+- Télécharger le dossier [Linux](./Executables/Linux/)
+- Ouvrez votre terminal
+- Allez dans le dossier: `cd Linux`
+- Ajout des droits : `chmod u+x Game.exe.x86_64`.
+- Lancez la commande : `./Game.exe.x86_64`.
+- Amusez-vous !
+- **/!\\** Pour un bon fonctionnement, lancez la commande `./Game.exe.x86_64` depuis le dossier où il se trouve et pas allieur. **/!\\**
+
+
+---
+---
+## Développement
+### **Pour reprendre le developpement**
+Notre code source se trouve dans le dossier [Jeu](./Jeu/).
+Ce dossier est un projet [GODOT 3](https://godotengine.org/download/3.x/windows/).
 
 ---
 ---
 ## Captures d'écran
+
+<br>
+
+![image1](./img/capture_jeu/menu.PNG)
+
+![image1](./img/capture_jeu/choix.PNG)
+
+![image1](./img/capture_jeu/debut.PNG)
+
+![image1](./img/capture_jeu/premierchoix.PNG)
+
+![image1](./img/capture_jeu/avantbond.PNG)
+
+![image1](./img/capture_jeu/milieu.PNG)
