@@ -12,7 +12,7 @@
 
 <br>
 
-- Lien vers le CDC : [Cahier des charges](https://docs.google.com/document/d/1us_ww4D9NajGj42IwqTGHw24I3956-RCEMMWY63Cnm0)
+- Lien vers le CDC : [Cahier des charges](https://docs.google.com/document/d/1xzDeGzwiBCh34jy6uoTakvPB755u0sSwF-H4a5tEj_0/edit#heading=h.p1l7u12dgulp)
 
 <br>
 
