@@ -1,8 +1,8 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Configuration.cs" type="Script" id=1]
 [ext_resource path="res://Font/Presley.otf" type="DynamicFontData" id=2]
-[ext_resource path="res://Assets/City/City/infispo.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Large.PNG" type="Texture" id=3]
 [ext_resource path="res://Assets/City/City/Map1.PNG" type="Texture" id=4]
 [ext_resource path="res://Assets/medium_2.PNG" type="Texture" id=5]
 
@@ -37,9 +37,14 @@ modulate_color = Color( 1, 1, 1, 0.815686 )
 texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 1075, 1034 )
 
+[sub_resource type="StyleBoxTexture" id=9]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 1073, 1023 )
+modulate_color = Color( 1, 1, 1, 0.713726 )
+
 [sub_resource type="StyleBoxTexture" id=6]
 texture = ExtResource( 3 )
-region_rect = Rect2( 0, 0, 561, 475 )
+region_rect = Rect2( 0, 0, 1073, 1023 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -105,7 +110,7 @@ margin_left = 1346.0
 margin_top = 229.0
 margin_right = 1882.0
 margin_bottom = 715.0
-custom_styles/hover = SubResource( 6 )
+custom_styles/hover = SubResource( 9 )
 custom_styles/pressed = SubResource( 6 )
 custom_styles/focus = SubResource( 6 )
 custom_styles/disabled = SubResource( 6 )
@@ -121,3 +126,4 @@ custom_fonts/font = SubResource( 3 )
 text = "LARGE (30x30)"
 
 [connection signal="pressed" from="pnlConfig/BtnMap2" to="." method="_on_BtnMap2_pressed"]
+[connection signal="pressed" from="pnlConfig/BtnMap3" to="." method="_on_BtnMap3_pressed"]

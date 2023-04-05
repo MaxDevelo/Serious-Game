@@ -1,6 +1,7 @@
 using Godot;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -11,6 +12,7 @@ public class Global : Node
     private int sociabilite = 100;
     private Global instance;
     private int date;
+    private int indexMap;
     private int index; // Index dans le JSON (Activite -> amelioration_t1 -> etc...)
 
 
@@ -19,15 +21,26 @@ public class Global : Node
         date = 1900;
         index = 0;
     }
+    public void setIndexMap(int index)
+    {
+        this.indexMap = index;
+    }
 
-    public int getIndex(){
+    public int getIndex()
+    {
         return index;
     }
+    public int getIndexMap()
+    {
+        return indexMap;
+    }
 
-    public int getDate(){
+    public int getDate()
+    {
         return date;
     }
-    public void setDate(){
+    public void setDate()
+    {
         this.date += 25;
     }
 
@@ -66,7 +79,8 @@ public class Global : Node
         }
         return instance;
     }
-    public void clearAll(){
+    public void clearAll()
+    {
         this.money = 50;
         this.ecology = 100;
         this.sociabilite = 100;
@@ -100,13 +114,16 @@ public class Global : Node
         {
             this.sociabilite += sociabilite;
         }
-        if(this.ecology > 100){
+        if (this.ecology > 100)
+        {
             this.ecology = 100;
         }
-        if(this.money > 100){
+        if (this.money > 100)
+        {
             this.money = 100;
         }
-        if(this.sociabilite > 100){
+        if (this.sociabilite > 100)
+        {
             this.sociabilite = 100;
         }
     }
@@ -124,8 +141,38 @@ public class Global : Node
         return sociabilite;
     }
 
-    public void newDate(){
+    public void newDate()
+    {
         setDate();
         this.index++;
+    }
+
+    public Boolean endParty()
+    {
+        if (indexMap == 1)
+        {
+            if (this.index > 4)
+            {
+                return true;
+            }
+        }
+        else if (indexMap == 2)
+        {
+            GD.Print("TEST" + this.index);
+            if (this.index > 8)
+            {
+                return true;
+            }
+
+        }
+        else if (indexMap == 3)
+        {
+            if (this.index > 12)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
