@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Scripts/MainScene.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/Bar.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Themes/Maire/Maire_base.tres" type="Theme" id=7]
 [ext_resource path="res://Assets/medium.png" type="Texture" id=8]
 [ext_resource path="res://Assets/closed.png" type="Texture" id=9]
+[ext_resource path="res://Themes/lblinfobtn.tres" type="Theme" id=10]
 
 [sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 1, 1, 1, 1 )
@@ -457,6 +458,15 @@ custom_styles/focus = SubResource( 34 )
 custom_styles/disabled = SubResource( 34 )
 custom_styles/normal = SubResource( 34 )
 text = "REJOUER"
+
+[node name="Label" type="Label" parent="."]
+margin_left = 844.0
+margin_top = 9.0
+margin_right = 1030.0
+margin_bottom = 76.0
+theme = ExtResource( 10 )
+text = "coucou"
+autowrap = true
 
 [connection signal="pressed" from="pnlMain/BtnOpenDate" to="." method="_on_BtnCloseDate_pressed"]
 [connection signal="pressed" from="pnlMain/BtnCloseDate" to="." method="_on_BtnOpenDate_pressed"]
