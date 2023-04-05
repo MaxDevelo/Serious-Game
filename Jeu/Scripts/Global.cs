@@ -96,6 +96,7 @@ public class Global : Node
         {
             this.ecology += ecology;
         }
+
         if (this.sociabilite + sociabilite < 0)
         {
             this.sociabilite = 0;
@@ -103,6 +104,12 @@ public class Global : Node
         else
         {
             this.sociabilite += sociabilite;
+        }
+        if(this.ecology > 100){
+            this.ecology = 100;
+        }
+        if(this.sociabilite > 100){
+            this.sociabilite = 100;
         }
     }
     public int getMoney()

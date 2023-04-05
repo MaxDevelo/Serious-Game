@@ -178,7 +178,7 @@ outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=31]
-size = 80
+size = 50
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
@@ -408,8 +408,8 @@ text = "VOUS AVEZ GAGNE !"
 [node name="lblRecap" type="Label" parent="pnlWinOrLose"]
 margin_left = 50.0
 margin_top = 273.0
-margin_right = 1181.0
-margin_bottom = 606.0
+margin_right = 1164.0
+margin_bottom = 566.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 31 )
 text = "RECAPE: "
