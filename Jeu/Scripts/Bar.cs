@@ -53,10 +53,9 @@ public class Bar : Panel
         Label lblSociabilite= GetNode("pnlSociabilite/lblSociabilite") as Label;
         lblSociabilite.Text = value.ToString() + "%";
     }
-
+    
     public void setScreen(String url)
     {
         Panel pnl = GetNode("pnlLastModification") as Panel;
     }
-    
 }

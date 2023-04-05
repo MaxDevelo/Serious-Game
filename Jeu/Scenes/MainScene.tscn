@@ -316,6 +316,7 @@ margin_right = 1074.0
 margin_bottom = 690.0
 
 [node name="pnlEndDate" type="Panel" parent="."]
+visible = false
 margin_left = 3.0
 margin_top = -1.0
 margin_right = 1915.0

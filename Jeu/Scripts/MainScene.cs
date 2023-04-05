@@ -178,8 +178,6 @@ public class MainScene : Node2D
             // Generate Button Pressed with function
             myButton.Connect("pressed", this, "onButtonPressed", new Godot.Collections.Array() { myButton, i });
         }
-
-
     }
     /*
         Clique sur une case
