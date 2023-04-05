@@ -1,0 +1,59 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\maxde\\Documents\\Desktop\\Cours But informatique\\S4\\T4\\t4\\Jeu\\Projet_t4.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\maxde\\Documents\\Desktop\\Cours But informatique\\S4\\T4\\t4\\Jeu\\Projet_t4.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\maxde\\Documents\\Desktop\\Cours But informatique\\S4\\T4\\t4\\Jeu\\Projet_t4.csproj",
+        "projectName": "Projet_t4",
+        "projectPath": "C:\\Users\\maxde\\Documents\\Desktop\\Cours But informatique\\S4\\T4\\t4\\Jeu\\Projet_t4.csproj",
+        "packagesPath": "C:\\Users\\maxde\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\maxde\\Documents\\Desktop\\Cours But informatique\\S4\\T4\\t4\\Jeu\\.mono\\temp\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Users\\maxde\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder",
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\maxde\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\maxde\\AppData\\Roaming\\NuGet\\config\\Godot.Offline.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "targetAlias": "net472",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "targetAlias": "net472",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

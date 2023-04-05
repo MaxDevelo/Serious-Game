@@ -1,0 +1,11 @@
+C:\Users\maxde\Documents\Desktop\Cours But informatique\S4\T4\t4\Jeu\.mono\temp\bin\Debug\Projet_t4.dll
+C:\Users\maxde\Documents\Desktop\Cours But informatique\S4\T4\t4\Jeu\.mono\temp\bin\Debug\Projet_t4.pdb
+C:\Users\maxde\Documents\Desktop\Cours But informatique\S4\T4\t4\Jeu\.mono\temp\obj\Debug\Projet_t4.csproj.AssemblyReference.cache
+C:\Users\maxde\Documents\Desktop\Cours But informatique\S4\T4\t4\Jeu\.mono\temp\obj\Debug\Projet_t4.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maxde\Documents\Desktop\Cours But informatique\S4\T4\t4\Jeu\.mono\temp\obj\Debug\Projet_t4.AssemblyInfoInputs.cache
+C:\Users\maxde\Documents\Desktop\Cours But informatique\S4\T4\t4\Jeu\.mono\temp\obj\Debug\Projet_t4.AssemblyInfo.cs
+C:\Users\maxde\Documents\Desktop\Cours But informatique\S4\T4\t4\Jeu\.mono\temp\obj\Debug\Projet_t4.csproj.CoreCompileInputs.cache
+C:\Users\maxde\Documents\Desktop\Cours But informatique\S4\T4\t4\Jeu\.mono\temp\obj\Debug\Projet_t4.dll
+C:\Users\maxde\Documents\Desktop\Cours But informatique\S4\T4\t4\Jeu\.mono\temp\obj\Debug\Projet_t4.pdb
+C:\Users\maxde\Documents\Desktop\Cours But informatique\S4\T4\t4\Jeu\.mono\temp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\maxde\Documents\Desktop\Cours But informatique\S4\T4\t4\Jeu\.mono\temp\obj\Debug\Projet_t4.csproj.CopyComplete
