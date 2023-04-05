@@ -71,6 +71,13 @@ public class Global : Node
         }
         return instance;
     }
+    public void clearAll(){
+        this.money = 100000;
+        this.ecology = 100;
+        this.sociabilite = 100;
+        this.date = 1900;
+        this.index = 0;
+    }
     public void setModificationBar(int money, int ecology, int sociabilite)
     {
         if (this.money + money < 0)
@@ -112,4 +119,7 @@ public class Global : Node
         return sociabilite;
     }
 
+    public void newDate(){
+        setDate();
+    }
 }

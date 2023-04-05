@@ -2,21 +2,27 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 using static Godot.Control;
 
 public class MainScene : Node2D
 {
     private Bar bar;
     private Global global;
-    private Panel pnlChooseActivite, pnlEndDate;
+    private Panel pnlChooseActivite, pnlEndDate, pnlEchap;
     private List<Button> buttonsTramWay;
     private List<Boolean> buttonsFree;
     private Label lblDate;
     private Boolean changeDate;
+    private Panel pnlInfoMaire;
     private Activite currentlyActivite; // Sauvegarder Activite actuel
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        pnlInfoMaire = GetNode<Panel>("pnlInfoMaire");
+        pnlInfoMaire.Visible = true;
+        pnlEchap = GetNode<Panel>("pnlEchap");
+        pnlEchap.Visible = false;
         changeDate = true;
         buttonsFree = new List<Boolean>();
         buttonsTramWay = new List<Button>();
@@ -33,7 +39,83 @@ public class MainScene : Node2D
 
         setModificationBar(global.getMoney(), global.getEcology(), global.getSociabilite());
         generateMap();
+        DisplayText(); // Afficher info Maire
     }
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("ui_cancel"))
+        {
+            if (pnlEchap.Visible)
+            {
+                pnlEchap.Visible = false;
+            }
+            else
+            {
+                GetNode<Button>("pnlEchap/btnQuit").Connect("pressed", this, "_on_btnQuit_pressed");
+                GetNode<Button>("pnlEchap/btnRestart").Connect("pressed", this, "_on_btnRestart_pressed");
+                pnlEchap.Visible = true;
+            }
+        }
+        // Si je clique sur entrer
+        if (@event.IsActionPressed("ui_accept"))
+        {
+            pnlInfoMaire.Visible = false;
+        }
+    }
+    /*
+        Fonciton qui gère le Maire quand il parle
+    */
+    private async void DisplayText()
+    {
+        Theme theme_base = GD.Load<Theme>("res://Themes/Maire/Maire_base.tres");
+        Theme theme_open = GD.Load<Theme>("res://Themes/Maire/Maire_open.tres");
+
+
+
+        String text = "Bonjour, je suis le maire du quartier de Koenigshoffen-Est. Je suis là pour vous aider à gérer votre quartier !";
+        for (int i = 0; i < text.Length; i++)
+        {
+            pnlInfoMaire.Theme = theme_open;
+            GetNode<Label>("pnlInfoMaire/pnlInfo/Label").Text += text[i];
+            await Task.Delay((int)10f);
+            pnlInfoMaire.Theme = theme_base;
+        }
+        await Task.Delay((int)3000f);
+        text = "Afin de pas vous perdre, je vais vous expliquer les différentes actions que vous pouvez faire.";
+        GetNode<Label>("pnlInfoMaire/pnlInfo/Label").Text = "";
+        for (int i = 0; i < text.Length; i++)
+        {
+            GetNode<Label>("pnlInfoMaire/pnlInfo/Label").Text += text[i];
+            await Task.Delay((int)10f);
+            pnlInfoMaire.Theme = theme_base;
+        }
+        await Task.Delay((int)3000f);
+        text = "Vous avez juste à cliquer sur une case pour voir les actions possibles et il suffit de choisir, mais faites attention, car votre chois a un impacte sur les jauges.";
+        GetNode<Label>("pnlInfoMaire/pnlInfo/Label").Text = "";
+        for (int i = 0; i < text.Length; i++)
+        {
+            GetNode<Label>("pnlInfoMaire/pnlInfo/Label").Text += text[i];
+            pnlInfoMaire.Theme = theme_open;
+            await Task.Delay((int)10f);
+            pnlInfoMaire.Theme = theme_base;
+        }
+
+    }
+
+
+
+    public void _on_btnRestart_pressed()
+    {
+        global.clearAll();
+        GetTree().ChangeScene("res://Scenes/Configuration.tscn");
+    }
+
+    public void _on_btnQuit_pressed()
+    {
+        GetTree().Quit();
+    }
+
+
     /*
     * This method will generate a map of 100 buttons to create map
     */
@@ -140,19 +222,19 @@ public class MainScene : Node2D
         {
             btnContinue.Connect("pressed", this, "_on_btnContinue_pressed");
         }
+        colorRandom(position, GD.Load<Theme>("res://Themes/Habitations.tres"));
     }
     public void _on_btnContinue_pressed()
     {
         changeDate = true;
         pnlEndDate.Visible = false;
-        newDate();
+        global.newDate();
     }
 
     public void _on_btnClose_pressed()
     {
         pnlChooseActivite.Visible = false;
         clearGridContainer();
-
     }
 
     public List<Button> getButtons(int position)
@@ -247,7 +329,7 @@ public class MainScene : Node2D
                 if (number < listButton.Count && !verifiyIfButtonsTramWay(buttons[number]))
                 {
                     buttonsFree[number] = false;
-                    // Construction en méttant une couleur
+                    // Construction en mettant une couleur
                     buttons[number].Theme = theme;
                 }
             }
@@ -298,8 +380,5 @@ public class MainScene : Node2D
             lblDate.Text = "Date: " + global.getDate();
             changeDate = false;
         }
-    }
-    public void newDate(){
-        global.setDate();
     }
 }

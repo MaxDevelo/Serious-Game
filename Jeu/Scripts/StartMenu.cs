@@ -19,6 +19,6 @@ public class StartMenu : Node2D
         GetTree().Quit();
     }
     public void _on_btnPlay_pressed(){
-        GetTree().ChangeScene("res://Scenes/MainScene.tscn");
+        GetTree().ChangeScene("res://Scenes/Configuration.tscn");
     }
 }
