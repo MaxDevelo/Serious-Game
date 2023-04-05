@@ -7,7 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using static Godot.Control;
 
-public class MainScene : Node2D
+public class MainScene_Large : Node2D
 {
 
 
@@ -25,6 +25,8 @@ public class MainScene : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+
+
         currentPositionTheme = -1;
         parcheminDateClosed = GetNode<Button>("pnlMain/BtnCloseDate");
         parcheminDateOpen = GetNode<Button>("pnlMain/BtnOpenDate");
@@ -48,6 +50,7 @@ public class MainScene : Node2D
         bar = GetNode<Bar>("Bar");
         pnlChooseActivite = GetNode<Panel>("pnlChooseActivite");
         pnlChooseActivite.Visible = false;
+
         setModificationBar(global.getMoney(), global.getEcology(), global.getSociabilite());
         generateMap();
         DisplayText(); // Afficher info Maire
@@ -74,12 +77,17 @@ public class MainScene : Node2D
             }
             else
             {
+                if (GetNode<Button>("pnlEchap/btnQuit").IsConnected("pressed", this, "_on_btnQuit_pressed"))
+                    GetNode<Button>("pnlEchap/btnQuit").Disconnect("pressed", this, "_on_btnQuit_pressed");
+
                 GetNode<Button>("pnlEchap/btnQuit").Connect("pressed", this, "_on_btnQuit_pressed");
+                //Verifier si il ets deja connecté
+                if (GetNode<Button>("pnlEchap/btnRestart").IsConnected("pressed", this, "_on_btnRestart_pressed"))
+                    GetNode<Button>("pnlEchap/btnRestart").Disconnect("pressed", this, "_on_btnRestart_pressed");
+
                 GetNode<Button>("pnlEchap/btnRestart").Connect("pressed", this, "_on_btnRestart_pressed");
                 pnlEchap.Visible = true;
             }
-
-
         }
         // Si je clique sur entrer
         if (@event.IsActionPressed("ui_accept"))
@@ -106,7 +114,7 @@ public class MainScene : Node2D
             pnlInfoMaire.Theme = theme_base;
         }
         await Task.Delay((int)3000f);
-        text = "Afin de pas vous perdre, je vais vous expliquer les différentes actions que vous pouvez faire.";
+        text = "Afin de de pas vous perdre, je vais vous expliquer les différentes actions que vous pouvez faire.";
         GetNode<Label>("pnlInfoMaire/pnlInfo/Label").Text = "";
         for (int i = 0; i < text.Length; i++)
         {
@@ -144,32 +152,32 @@ public class MainScene : Node2D
 
 
     /*
-    * This method will generate a map of 100 buttons to create map
+    * This method will generate a map of 200 buttons to create map
     */
     public void generateMap()
     {
         GridContainer myGridContainer = GetNode<GridContainer>("pnlMain/gridMap");
-        myGridContainer.Columns = 10;
-        for (int i = 1; i <= 100; i++)
+        myGridContainer.Columns = 30;
+        for (int i = 1; i <= 900; i++)
         {
             buttonsFree.Add(true);
             // Create a new button
             Button myButton = new Button();
             // Charger le thème à partir du fichier de ressources
             Theme theme;
-            if (i > 50 && i <= 60)
+
+            if (i > 120 && i <= 150)
             {
                 theme = GD.Load<Theme>("res://Themes/tramway.tres");
                 myButton.Disabled = true;
                 buttonsTramWay.Add(myButton);
             }
-            else if (i < 50)
+            else if (i < 120)
             {
                 theme = GD.Load<Theme>("res://Themes/green_tree.tres");
             }
             else
             {
-
                 theme = GD.Load<Theme>("res://Themes/green.tres");
             }
 
@@ -180,7 +188,7 @@ public class MainScene : Node2D
             // Set the button's size flags
             myButton.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
             myButton.SizeFlagsVertical = (int)SizeFlags.ExpandFill;
-            myButton.RectMinSize = new Vector2(50, 50);
+            myButton.RectMinSize = new Vector2(20, 20);
             // Generate Button Pressed with function
             myButton.Connect("pressed", this, "onButtonPressed", new Godot.Collections.Array() { myButton, i });
         }
@@ -299,87 +307,82 @@ public class MainScene : Node2D
         pnlChooseActivite.Visible = false;
         clearGridContainer();
     }
-
     public List<Button> getButtons(int position)
     {
         List<Button> listButton = new List<Button>();
-        if (position - 10 > 0 && position - 10 < 100)
+
+        int gridSize = 30;
+        int maxIndex = gridSize * gridSize;
+
+        int row = position / gridSize;
+        int col = position % gridSize;
+
+        // Check top button
+        if (row > 0 && buttonsFree[position - gridSize])
         {
-            if (buttonsFree[position - 10])
-            {
-                // Vérifier que le Button existe avant de l'ajouter
-                Button buttonTop = GetNode<Button>("pnlMain/gridMap/Button" + (position - 10));
-                listButton.Add(buttonTop);
-            }
+            Button buttonTop = GetNode<Button>("pnlMain/gridMap/Button" + (position - gridSize));
+            listButton.Add(buttonTop);
         }
-        if (position + 10 > 0 && position + 10 < 100 && buttonsFree[position - 10])
+
+        // Check bottom button
+        if (row < gridSize - 1 && buttonsFree[position + gridSize])
         {
-            if (buttonsFree[position + 10])
-            {
-                ;
-                Button buttonBottom = GetNode<Button>("pnlMain/gridMap/Button" + (position + 10));
-                listButton.Add(buttonBottom);
-            }
+            Button buttonBottom = GetNode<Button>("pnlMain/gridMap/Button" + (position + gridSize));
+            listButton.Add(buttonBottom);
         }
-        if (position - 1 > 0 && position - 1 < 100)
+
+        // Check left button
+        if (col > 0 && buttonsFree[position - 1])
         {
-            if (buttonsFree[position - 1])
-            {
-                ;
-                Button buttonLeft = GetNode<Button>("pnlMain/gridMap/Button" + (position - 1));
-                listButton.Add(buttonLeft);
-            }
+            Button buttonLeft = GetNode<Button>("pnlMain/gridMap/Button" + (position - 1));
+            listButton.Add(buttonLeft);
         }
-        if (position + 1 > 0 && position + 1 < 100)
+
+        // Check right button
+        if (col < gridSize - 1 && buttonsFree[position + 1])
         {
-            if (buttonsFree[position + 1])
-            {
-                Button buttonRight = GetNode<Button>("pnlMain/gridMap/Button" + (position + 1));
-                listButton.Add(buttonRight);
-            }
+            Button buttonRight = GetNode<Button>("pnlMain/gridMap/Button" + (position + 1));
+            listButton.Add(buttonRight);
         }
-        // Recuperer les boutons en diagonale
-        if (position - 11 > 0 && position - 11 < 100)
+
+        // Check top left button
+        if (row > 0 && col > 0 && buttonsFree[position - gridSize - 1])
         {
-            if (buttonsFree[position - 11])
-            {
-                Button buttonTopLeft = GetNode<Button>("pnlMain/gridMap/Button" + (position - 11));
-                listButton.Add(buttonTopLeft);
-            }
+            Button buttonTopLeft = GetNode<Button>("pnlMain/gridMap/Button" + (position - gridSize - 1));
+            listButton.Add(buttonTopLeft);
         }
-        if (position - 9 > 0 && position - 9 < 100)
+
+        // Check top right button
+        if (row > 0 && col < gridSize - 1 && buttonsFree[position - gridSize + 1])
         {
-            if (buttonsFree[position - 9])
-            {
-                Button buttonTopRight = GetNode<Button>("pnlMain/gridMap/Button" + (position - 9));
-                listButton.Add(buttonTopRight);
-            }
+            Button buttonTopRight = GetNode<Button>("pnlMain/gridMap/Button" + (position - gridSize + 1));
+            listButton.Add(buttonTopRight);
         }
-        if (position + 9 > 0 && position + 9 < 100)
+
+        // Check bottom left button
+        if (row < gridSize - 1 && col > 0 && buttonsFree[position + gridSize - 1])
         {
-            if (buttonsFree[position + 9])
-            {
-                Button buttonBottomLeft = GetNode<Button>("pnlMain/gridMap/Button" + (position + 9));
-                listButton.Add(buttonBottomLeft);
-            }
+            Button buttonBottomLeft = GetNode<Button>("pnlMain/gridMap/Button" + (position + gridSize - 1));
+            listButton.Add(buttonBottomLeft);
         }
-        if (position + 11 > 0 && position + 11 < 100)
+
+        // Check bottom right button
+        if (row < gridSize - 1 && col < gridSize - 1 && buttonsFree[position + gridSize + 1])
         {
-            if (buttonsFree[position + 11])
-            {
-                Button buttonBottomRight = GetNode<Button>("pnlMain/gridMap/Button" + (position + 11));
-                listButton.Add(buttonBottomRight);
-            }
+            Button buttonBottomRight = GetNode<Button>("pnlMain/gridMap/Button" + (position + gridSize + 1));
+            listButton.Add(buttonBottomRight);
         }
+
         return listButton;
     }
+
     /*
         Colorier de manière random les cases
     */
     public void colorRandom(int position, Theme theme)
     {
         Random random = new Random();
-        int numberButtonColor = random.Next(2, 4);
+        int numberButtonColor = random.Next(6, 16);
         List<Button> buttons = getButtons(position);
 
         for (int i = 0; i < numberButtonColor; i++)
@@ -392,7 +395,6 @@ public class MainScene : Node2D
                 selectedButton = buttons[number];
                 break;
             } while (!buttonsFree[number]);
-            GD.Print(verifiyIfButtonsTramWay(selectedButton));
             if (!verifiyIfButtonsTramWay(selectedButton))
             {
                 buttonsFree[number] = false;
@@ -400,6 +402,9 @@ public class MainScene : Node2D
             }
         }
     }
+
+
+
     /*
         Vérifier qu'il s'agit ou non du chemin de fer
     */
@@ -452,7 +457,7 @@ public class MainScene : Node2D
             GetNode<Label>("pnlWinOrLose/lblWinOrLose").Text = "Vous avez Perdu !";
             GetNode<Label>("pnlWinOrLose/lblRecap").Text = "Date: " + global.getDate() + "\n\nRécapitulatif: \r" + "Argent: " + global.getMoney() + "%\n" + "Ecologie: " + global.getEcology() + "%\n" + "Sociabilité: " + global.getSociabilite() + "%";
         }
-        if (global.endParty())
+        if (global.getIndex() > 4)
         {
             pnlEndDate.Visible = false;
             pnlWinOrLose.Visible = true;

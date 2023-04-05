@@ -54,6 +54,7 @@ public class MainScene_Medium : Node2D
         setModificationBar(global.getMoney(), global.getEcology(), global.getSociabilite());
         generateMap();
         DisplayText(); // Afficher info Maire
+        GD.Print(global.getIndexMap());
     }
 
     public void _on_BtnOpenDate_pressed()
@@ -416,10 +417,12 @@ public class MainScene_Medium : Node2D
                 number = random.Next(buttons.Count);
                 selectedButton = buttons[number];
                 break;
-            } while (verifiyIfButtonsTramWay(selectedButton) || !buttonsFree[number]);
-
-            buttonsFree[number] = false;
-            selectedButton.Theme = theme;
+            } while (!buttonsFree[number]);
+            if (!verifiyIfButtonsTramWay(selectedButton))
+            {
+                buttonsFree[number] = false;
+                selectedButton.Theme = theme;
+            }
         }
     }
 
