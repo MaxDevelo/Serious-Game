@@ -87,6 +87,9 @@ public class MainScene : Node2D
         {
             pnlInfoMaire.Visible = false;
         }
+
+       
+
     }
     /*
         Fonciton qui gère le Maire quand il parle
