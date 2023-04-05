@@ -35,7 +35,7 @@ public class Bar : Panel
     {
         // Display Money
         Label lblMoney = GetNode("pnlEconomy/lblMoney") as Label;
-        lblMoney.Text = value.ToString() + "€";
+        lblMoney.Text = value.ToString() + "%";
 
     }
 
@@ -53,4 +53,10 @@ public class Bar : Panel
         Label lblSociabilite= GetNode("pnlSociabilite/lblSociabilite") as Label;
         lblSociabilite.Text = value.ToString() + "%";
     }
+
+    public void setScreen(String url)
+    {
+        Panel pnl = GetNode("pnlLastModification") as Panel;
+    }
+    
 }

@@ -15,9 +15,16 @@ public class MainScene : Node2D
     private Label lblDate;
     private Boolean changeDate;
     private Panel pnlInfoMaire;
+    private String currentTheme;
+    private int currentPositionTheme;
+    private Button parcheminDateClosed, parcheminDateOpen;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        currentPositionTheme = -1;
+        parcheminDateClosed = GetNode<Button>("pnlMain/BtnCloseDate");
+        parcheminDateOpen = GetNode<Button>("pnlMain/BtnOpenDate");
+        parcheminDateOpen.Visible = false;
         pnlWinOrLose = GetNode<Panel>("pnlWinOrLose");
         pnlWinOrLose.Visible = false;
         pnlInfoMaire = GetNode<Panel>("pnlInfoMaire");
@@ -28,7 +35,7 @@ public class MainScene : Node2D
         buttonsFree = new List<Boolean>();
         buttonsTramWay = new List<Button>();
         pnlEndDate = GetNode<Panel>("pnlEndDate");
-        lblDate = GetNode<Label>("pnlMain/lblDate");
+        lblDate = GetNode<Label>("pnlMain/BtnOpenDate/lblDate");
         pnlEndDate.Visible = false;
         // getInstance of global
         global = GetNode<Global>("/root/Global");
@@ -42,6 +49,18 @@ public class MainScene : Node2D
         generateMap();
         DisplayText(); // Afficher info Maire
     }
+
+    public void _on_BtnOpenDate_pressed()
+    {
+        parcheminDateOpen.Visible = true;
+        parcheminDateClosed.Visible = false;
+    }
+    public void _on_BtnCloseDate_pressed()
+    {
+        parcheminDateOpen.Visible = false;
+        parcheminDateClosed.Visible = true;
+    }
+
     public override void _Input(InputEvent @event)
     {
         if (@event.IsActionPressed("ui_cancel"))
@@ -144,6 +163,7 @@ public class MainScene : Node2D
             }
             else
             {
+
                 theme = GD.Load<Theme>("res://Themes/green.tres");
             }
 
@@ -168,7 +188,6 @@ public class MainScene : Node2D
     {
         if (buttonsFree[index])
         {
-            buttonsFree[index] = false;
             pnlChooseActivite.Visible = true;
             Button btnClose = GetNode<Button>("pnlChooseActivite/btnClose");
             GridContainer gridActivite = GetNode<GridContainer>("pnlChooseActivite/gridActivite");
@@ -179,6 +198,7 @@ public class MainScene : Node2D
             List<Activite> activites = (global.getIndex() == 0 ? global.retrieveDataActivite() : (global.getIndex() == 1 ? global.retrieveDataAmelioration_t1() : global.retrieveDataAmelioration_t2()));
             for (int i = 1; i <= activites.Count; i++)
             {
+                Activite activite = activites[i - 1];
                 Button btnActivite = new Button();
                 Theme theme = GD.Load<Theme>("res://Themes/chooseActivite.tres");
                 btnActivite.Theme = theme;
@@ -186,10 +206,10 @@ public class MainScene : Node2D
                 btnActivite.Text = activites[i - 1].Title;
                 btnActivite.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
                 btnActivite.SizeFlagsVertical = (int)SizeFlags.ExpandFill;
-                Activite activite = activites[i - 1];
+
                 if (btnActivite.GetSignalConnectionList("pressed").Count == 0)
                 {
-                    btnActivite.Connect("pressed", this, "onActivitePressed", new Godot.Collections.Array() { activite.Title, activite.Theme, activite.Ecology, activite.Sociability, activite.Money, btnActivite, myButton, activites[i - 1].Id });
+                    btnActivite.Connect("pressed", this, "onActivitePressed", new Godot.Collections.Array() { index, activite.Title, activite.isActivity, activite.Theme, activite.Ecology, activite.Sociability, activite.Money, btnActivite, myButton, activites[i - 1].Id });
                 }
                 gridActivite.AddChild(btnActivite);
             }
@@ -197,17 +217,24 @@ public class MainScene : Node2D
 
     }
 
-    public void onActivitePressed(String name, String themeActivit, int ecology, int sociabilite, int money, Button btnActivite, Button myButton, int id)
+    public void onActivitePressed(int index, String name, Boolean isActivity, String themeActivite, int ecology, int sociabilite, int money, Button btnActivite, Button myButton, int id)
     {
-
-        Color backgroundColor = myButton.Modulate;
         // Recuperer position du bouton pour recuperer les bouton autour de lui
         int position = Convert.ToInt32(myButton.Name.Split('n')[1]);
-        Theme theme = GD.Load<Theme>("res://" + themeActivit);
-        myButton.Theme = theme;
+        Theme theme = GD.Load<Theme>("res://" + themeActivite);
         global.setModificationBar(money, ecology, sociabilite);
         setModificationBar(global.getMoney(), global.getEcology(), global.getSociabilite());
-        colorRandom(position, theme);
+        if (name == "Agrandir" && currentTheme != null && currentPositionTheme != -1)
+        {
+            colorRandom(currentPositionTheme, GD.Load<Theme>("res://" + currentTheme));
+        }
+        else
+        {
+            colorRandom(position, GD.Load<Theme>("res://Themes/Habitations.tres"));
+            buttonsFree[index] = false;
+            myButton.Theme = theme;
+            colorRandom(position, theme);
+        }
 
         clearGridContainer();
         pnlChooseActivite.Visible = false;
@@ -216,7 +243,7 @@ public class MainScene : Node2D
         //Affichage des informations (Récapitulatif)
         Label lblDesc = GetNode<Label>("pnlEndDate/lblDesc");
         lblDesc.Text = "Titre:     " + name + "\n" +
-            "Argent:     " + money+ "\n" +
+            "Argent:     " + money + "\n" +
             "Sociabilité:     " + sociabilite + "\n" +
             "Ecologie:     " + ecology;
         // CLiquer sur "Avancer de 25 ans)
@@ -224,8 +251,14 @@ public class MainScene : Node2D
         if (btnContinue.GetSignalConnectionList("pressed").Count == 0)
         {
             btnContinue.Connect("pressed", this, "_on_btnContinue_pressed");
+        };
+        // Stocker le thème principal
+        if (isActivity)
+        {
+            currentTheme = themeActivite;
+            currentPositionTheme = position;
         }
-        colorRandom(position, GD.Load<Theme>("res://Themes/Habitations.tres"));
+
     }
     public void _on_btnContinue_pressed()
     {
@@ -319,12 +352,12 @@ public class MainScene : Node2D
     public void colorRandom(int position, Theme theme)
     {
         Random random = new Random();
-        int numberButtomColor = random.Next(1, 6);
+        int numberButtomColor = random.Next(4, 6);
         List<int> listButton = new List<int>();
         List<Button> buttons = getButtons(position);
         for (int i = 0; i < buttons.Count; i++)
         {
-            int number = random.Next(0, 7);
+            int number = random.Next(0, 8);
             if (!listButton.Contains(number))
             {
                 listButton.Add(number);
@@ -378,7 +411,7 @@ public class MainScene : Node2D
         {
             Label lblDate = GetNode<Label>("pnlEndDate/lblTitle");
             lblDate.Text = "Date: " + global.getDate();
-            lblDate = GetNode<Label>("pnlMain/lblDate");
+            lblDate = GetNode<Label>("pnlMain/BtnOpenDate/lblDate");
             lblDate.Text = "Date: " + global.getDate();
             changeDate = false;
         }
@@ -387,14 +420,14 @@ public class MainScene : Node2D
             pnlEndDate.Visible = false;
             pnlWinOrLose.Visible = true;
             GetNode<Label>("pnlWinOrLose/lblWinOrLose").Text = "Vous avez Perdu !";
-            GetNode<Label>("pnlWinOrLose/lblRecap").Text = "Date: " + global.getDate() + "\n\nRécapitulatif: \r" + "Argent: " + global.getMoney() + "€\n" + "Ecologie: " + global.getEcology() + "%\n" + "Sociabilité: " + global.getSociabilite() + "%";
+            GetNode<Label>("pnlWinOrLose/lblRecap").Text = "Date: " + global.getDate() + "\n\nRécapitulatif: \r" + "Argent: " + global.getMoney() + "%\n" + "Ecologie: " + global.getEcology() + "%\n" + "Sociabilité: " + global.getSociabilite() + "%";
         }
-        if (global.getIndex() > 3)
+        if (global.getIndex() > 4)
         {
             pnlEndDate.Visible = false;
             pnlWinOrLose.Visible = true;
             GetNode<Label>("pnlWinOrLose/lblWinOrLose").Text = "Vous avez Gagné !";
-            GetNode<Label>("pnlWinOrLose/lblRecap").Text = "Date: " + global.getDate() + "\n\nRécapitulatif: \r" + "Argent: " + global.getMoney() + "€\n" + "Ecologie: " + global.getEcology() + "%\n" + "Sociabilité: " + global.getSociabilite() + "%";
+            GetNode<Label>("pnlWinOrLose/lblRecap").Text = "Date: " + global.getDate() + "\n\nRécapitulatif: \r" + "Argent: " + global.getMoney() + "%\n" + "Ecologie: " + global.getEcology() + "%\n" + "Sociabilité: " + global.getSociabilite() + "%";
         }
     }
 

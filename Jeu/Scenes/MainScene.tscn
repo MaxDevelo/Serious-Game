@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Scripts/MainScene.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/Bar.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Assets/page.png" type="Texture" id=5]
 [ext_resource path="res://Assets/sky.png" type="Texture" id=6]
 [ext_resource path="res://Themes/Maire/Maire_base.tres" type="Theme" id=7]
+[ext_resource path="res://Assets/medium.png" type="Texture" id=8]
+[ext_resource path="res://Assets/closed.png" type="Texture" id=9]
 
 [sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 1, 1, 1, 1 )
@@ -20,11 +22,19 @@ bg_color = Color( 0.294118, 0.294118, 0.294118, 1 )
 [sub_resource type="Theme" id=4]
 Panel/styles/panel = SubResource( 3 )
 
+[sub_resource type="StyleBoxTexture" id=35]
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 1077, 1397 )
+
 [sub_resource type="DynamicFont" id=11]
-size = 60
+size = 50
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxTexture" id=36]
+texture = ExtResource( 9 )
+region_rect = Rect2( 0, 0, 1157, 314 )
 
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.733333, 0.733333, 0.733333, 1 )
@@ -79,7 +89,7 @@ outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=16]
-size = 80
+size = 60
 font_data = ExtResource( 4 )
 
 [sub_resource type="StyleBoxFlat" id=17]
@@ -179,7 +189,7 @@ font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=31]
 size = 50
-outline_size = 2
+outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
@@ -233,17 +243,36 @@ margin_right = 1068.0
 margin_bottom = 1071.0
 columns = 20
 
-[node name="lblDate" type="Label" parent="pnlMain"]
-margin_left = 1127.0
-margin_top = 340.0
-margin_right = 1967.0
-margin_bottom = 541.0
+[node name="BtnOpenDate" type="Button" parent="pnlMain"]
+margin_left = 6.0
+margin_top = 3.0
+margin_right = 244.0
+margin_bottom = 275.0
+custom_styles/hover = SubResource( 35 )
+custom_styles/pressed = SubResource( 35 )
+custom_styles/focus = SubResource( 35 )
+custom_styles/disabled = SubResource( 35 )
+custom_styles/normal = SubResource( 35 )
+
+[node name="lblDate" type="Label" parent="pnlMain/BtnOpenDate"]
+margin_left = -8.0
+margin_top = 105.0
+margin_right = 253.0
+margin_bottom = 249.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 11 )
 text = "Date: 1800
 "
 align = 1
-valign = 2
+
+[node name="BtnCloseDate" type="Button" parent="pnlMain"]
+margin_right = 247.0
+margin_bottom = 52.0
+custom_styles/hover = SubResource( 36 )
+custom_styles/pressed = SubResource( 36 )
+custom_styles/focus = SubResource( 36 )
+custom_styles/disabled = SubResource( 36 )
+custom_styles/normal = SubResource( 36 )
 
 [node name="Bar" parent="." instance=ExtResource( 2 )]
 margin_left = 1139.0
@@ -252,6 +281,7 @@ margin_right = 1865.0
 margin_bottom = 412.0
 
 [node name="pnlChooseActivite" type="Panel" parent="."]
+visible = false
 margin_left = 318.0
 margin_top = 166.0
 margin_right = 1522.0
@@ -286,7 +316,6 @@ margin_right = 1074.0
 margin_bottom = 690.0
 
 [node name="pnlEndDate" type="Panel" parent="."]
-visible = false
 margin_left = 3.0
 margin_top = -1.0
 margin_right = 1915.0
@@ -324,7 +353,7 @@ text = "DATE: 1800"
 
 [node name="lblDesc" type="Label" parent="pnlEndDate"]
 margin_left = 725.0
-margin_top = 344.0
+margin_top = 304.0
 margin_right = 1275.0
 margin_bottom = 748.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -333,6 +362,7 @@ text = "mm"
 autowrap = true
 
 [node name="pnlEchap" type="Panel" parent="."]
+visible = false
 margin_left = 338.0
 margin_top = 274.0
 margin_right = 1512.0
@@ -367,6 +397,7 @@ custom_styles/normal = SubResource( 24 )
 text = "RECOMMENCER"
 
 [node name="pnlInfoMaire" type="Panel" parent="."]
+visible = false
 margin_left = 1539.0
 margin_top = 580.0
 margin_right = 1928.0
@@ -390,6 +421,7 @@ custom_fonts/font = SubResource( 28 )
 autowrap = true
 
 [node name="pnlWinOrLose" type="Panel" parent="."]
+visible = false
 margin_left = 405.0
 margin_top = 164.0
 margin_right = 1644.0
@@ -406,10 +438,10 @@ custom_fonts/font = SubResource( 30 )
 text = "VOUS AVEZ GAGNE !"
 
 [node name="lblRecap" type="Label" parent="pnlWinOrLose"]
-margin_left = 50.0
-margin_top = 273.0
-margin_right = 1164.0
-margin_bottom = 566.0
+margin_left = 306.0
+margin_top = 249.0
+margin_right = 845.0
+margin_bottom = 594.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 31 )
 text = "RECAPE: "
@@ -429,4 +461,6 @@ custom_styles/disabled = SubResource( 34 )
 custom_styles/normal = SubResource( 34 )
 text = "REJOUER"
 
+[connection signal="pressed" from="pnlMain/BtnOpenDate" to="." method="_on_BtnCloseDate_pressed"]
+[connection signal="pressed" from="pnlMain/BtnCloseDate" to="." method="_on_BtnOpenDate_pressed"]
 [connection signal="pressed" from="pnlWinOrLose/btnRestart" to="." method="_on_btnRestartWinorLose_pressed"]

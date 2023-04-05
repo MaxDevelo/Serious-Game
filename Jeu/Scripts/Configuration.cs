@@ -13,6 +13,7 @@ public class Configuration : Node2D
         GetNode<Button>("pnlConfig/BtnMap1").Connect("pressed", this, "_on_btnMap1_pressed");
     }
     void _on_btnMap1_pressed(){
+        
          GetTree().ChangeScene("res://Scenes/MainScene.tscn");
     }
 

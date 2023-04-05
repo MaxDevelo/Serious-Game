@@ -6,7 +6,7 @@ using System.IO;
 
 public class Global : Node
 {
-    private int money = 100000;
+    private int money = 50;
     private int ecology = 100;
     private int sociabilite = 100;
     private Global instance;
@@ -29,11 +29,6 @@ public class Global : Node
     }
     public void setDate(){
         this.date += 25;
-        if(this.index < 3){
-            this.index++;
-        }else{
-            this.index = 0;
-        }
     }
 
     public List<Activite> retrieveDataActivite()
@@ -72,7 +67,7 @@ public class Global : Node
         return instance;
     }
     public void clearAll(){
-        this.money = 100000;
+        this.money = 50;
         this.ecology = 100;
         this.sociabilite = 100;
         this.date = 1900;
@@ -108,6 +103,9 @@ public class Global : Node
         if(this.ecology > 100){
             this.ecology = 100;
         }
+        if(this.money > 100){
+            this.money = 100;
+        }
         if(this.sociabilite > 100){
             this.sociabilite = 100;
         }
@@ -128,5 +126,6 @@ public class Global : Node
 
     public void newDate(){
         setDate();
+        this.index++;
     }
 }
