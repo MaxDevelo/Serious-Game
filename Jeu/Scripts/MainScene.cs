@@ -8,18 +8,25 @@ public class MainScene : Node2D
 {
     private Bar bar;
     private Global global;
-    private Panel pnlChooseActivite;
+    private Panel pnlChooseActivite, pnlEndDate;
     private List<Button> buttonsTramWay;
     private List<Boolean> buttonsFree;
+    private Label lblDate;
+    private Boolean changeDate;
     private Activite currentlyActivite; // Sauvegarder Activite actuel
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        changeDate = true;
         buttonsFree = new List<Boolean>();
         buttonsTramWay = new List<Button>();
+        pnlEndDate = GetNode<Panel>("pnlEndDate");
+        lblDate = GetNode<Label>("pnlMain/lblDate");
+        pnlEndDate.Visible = false;
         // getInstance of global
         global = GetNode<Global>("/root/Global");
         global.getInstance();
+        lblDate.Text = global.getDate().ToString();
         bar = GetNode<Bar>("Bar");
         pnlChooseActivite = GetNode<Panel>("pnlChooseActivite");
         pnlChooseActivite.Visible = false;
@@ -46,10 +53,12 @@ public class MainScene : Node2D
                 theme = GD.Load<Theme>("res://Themes/tramway.tres");
                 buttonsTramWay.Add(myButton);
             }
-            else if(i < 50)
+            else if (i < 50)
             {
                 theme = GD.Load<Theme>("res://Themes/green_tree.tres");
-            }else{
+            }
+            else
+            {
                 theme = GD.Load<Theme>("res://Themes/green.tres");
             }
 
@@ -82,20 +91,21 @@ public class MainScene : Node2D
             {
                 btnClose.Connect("pressed", this, "_on_btnClose_pressed");
             }
-            for (int i = 1; i <= global.retrieveDataActivite().Count; i++)
+            List<Activite> activites = (global.getIndex() == 0 ? global.retrieveDataActivite() : (global.getIndex() == 1 ? global.retrieveDataAmelioration_t1() : global.retrieveDataAmelioration_t2()));
+            for (int i = 1; i <= activites.Count; i++)
             {
                 Button btnActivite = new Button();
                 Theme theme = GD.Load<Theme>("res://Themes/chooseActivite.tres");
                 btnActivite.Theme = theme;
                 btnActivite.Name = "btnActivite" + i;
-                btnActivite.Text = global.retrieveDataActivite()[i - 1].Title;
+                btnActivite.Text = activites[i - 1].Title;
                 btnActivite.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
                 btnActivite.SizeFlagsVertical = (int)SizeFlags.ExpandFill;
                 if (btnActivite.GetSignalConnectionList("pressed").Count == 0)
                 {
-                    Activite activite = global.retrieveDataActivite()[i - 1];
+                    Activite activite = activites[i - 1];
                     currentlyActivite = activite;
-                    btnActivite.Connect("pressed", this, "onActivitePressed", new Godot.Collections.Array() { activite.Theme, btnActivite, myButton, global.retrieveDataActivite()[i - 1].Id });
+                    btnActivite.Connect("pressed", this, "onActivitePressed", new Godot.Collections.Array() { activite.Theme, btnActivite, myButton, activites[i - 1].Id });
                 }
                 gridActivite.AddChild(btnActivite);
             }
@@ -110,13 +120,32 @@ public class MainScene : Node2D
         int position = Convert.ToInt32(myButton.Name.Split('n')[1]);
         Theme theme = GD.Load<Theme>("res://" + themeActivit);
         myButton.Theme = theme;
-        GD.Print("Money: " + currentlyActivite.Money + " Ecology: " + currentlyActivite.Ecology + " Sociability: " + currentlyActivite.Sociability);
         global.setModificationBar(currentlyActivite.Money, currentlyActivite.Ecology, currentlyActivite.Sociability);
         setModificationBar(global.getMoney(), global.getEcology(), global.getSociabilite());
         colorRandom(position, theme);
 
         clearGridContainer();
         pnlChooseActivite.Visible = false;
+        pnlEndDate.Visible = true;
+
+        //Affichage des informations (Récapitulatif)
+        Label lblDesc = GetNode<Label>("pnlEndDate/lblDesc");
+        lblDesc.Text = "Titre:     " + currentlyActivite.Title + "\n" +
+            "Argent:     " + currentlyActivite.Money + "\n" +
+            "Sociabilité:     " + currentlyActivite.Sociability + "\n" +
+            "Ecologie:     " + currentlyActivite.Ecology;
+        // CLiquer sur "Avancer de 25 ans)
+        Button btnContinue = GetNode<Button>("pnlEndDate/btnContinue");
+        if (btnContinue.GetSignalConnectionList("pressed").Count == 0)
+        {
+            btnContinue.Connect("pressed", this, "_on_btnContinue_pressed");
+        }
+    }
+    public void _on_btnContinue_pressed()
+    {
+        changeDate = true;
+        pnlEndDate.Visible = false;
+        newDate();
     }
 
     public void _on_btnClose_pressed()
@@ -258,9 +287,19 @@ public class MainScene : Node2D
         }
     }
 
-    //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-    //  public override void _Process(float delta)
-    //  {
-    //      
-    //  }
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(float delta)
+    {
+        if (changeDate)
+        {
+            Label lblDate = GetNode<Label>("pnlEndDate/lblTitle");
+            lblDate.Text = "Date: " + global.getDate();
+            lblDate = GetNode<Label>("pnlMain/lblDate");
+            lblDate.Text = "Date: " + global.getDate();
+            changeDate = false;
+        }
+    }
+    public void newDate(){
+        global.setDate();
+    }
 }

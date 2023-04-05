@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/MainScene.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/Bar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Font/Presley.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Font/Presley.otf" type="DynamicFontData" id=4]
+[ext_resource path="res://Assets/page.png" type="Texture" id=5]
+[ext_resource path="res://Assets/sky.png" type="Texture" id=6]
 
 [sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 1, 1, 1, 1 )
@@ -16,6 +18,12 @@ bg_color = Color( 0.294118, 0.294118, 0.294118, 1 )
 
 [sub_resource type="Theme" id=4]
 Panel/styles/panel = SubResource( 3 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 60
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.733333, 0.733333, 0.733333, 1 )
@@ -44,6 +52,35 @@ border_width_bottom = 6
 border_color = Color( 1, 1, 1, 1 )
 corner_radius_top_right = 60
 
+[sub_resource type="StyleBoxTexture" id=12]
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 320, 256 )
+
+[sub_resource type="DynamicFont" id=13]
+size = 50
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0.847059, 0.823529, 0.623529, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0.937255, 0.92549, 0.639216, 1 )
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="DynamicFont" id=15]
+size = 96
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=16]
+size = 80
+font_data = ExtResource( 4 )
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -63,6 +100,18 @@ margin_top = -6.0
 margin_right = 1068.0
 margin_bottom = 1071.0
 columns = 20
+
+[node name="lblDate" type="Label" parent="pnlMain"]
+margin_left = 1127.0
+margin_top = 340.0
+margin_right = 1967.0
+margin_bottom = 541.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Date: 1800
+"
+align = 1
+valign = 2
 
 [node name="Bar" parent="." instance=ExtResource( 2 )]
 margin_left = 1139.0
@@ -103,3 +152,49 @@ margin_left = 170.0
 margin_top = 212.0
 margin_right = 1074.0
 margin_bottom = 690.0
+
+[node name="pnlEndDate" type="Panel" parent="."]
+margin_left = 3.0
+margin_top = -1.0
+margin_right = 1915.0
+margin_bottom = 1085.0
+custom_styles/panel = SubResource( 12 )
+
+[node name="Page" type="Sprite" parent="pnlEndDate"]
+position = Vector2( 947, 544 )
+scale = Vector2( 3.84667, 3.55308 )
+texture = ExtResource( 5 )
+
+[node name="btnContinue" type="Button" parent="pnlEndDate"]
+margin_left = 833.0
+margin_top = 764.0
+margin_right = 1166.0
+margin_bottom = 871.0
+mouse_default_cursor_shape = 2
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 13 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 14 )
+custom_styles/focus = SubResource( 14 )
+custom_styles/disabled = SubResource( 14 )
+custom_styles/normal = SubResource( 14 )
+text = "Avancer de 25 ans"
+
+[node name="lblTitle" type="Label" parent="pnlEndDate"]
+margin_left = 807.0
+margin_top = 210.0
+margin_right = 1142.0
+margin_bottom = 301.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 15 )
+text = "DATE: 1800"
+
+[node name="lblDesc" type="Label" parent="pnlEndDate"]
+margin_left = 725.0
+margin_top = 344.0
+margin_right = 1275.0
+margin_bottom = 748.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 16 )
+text = "mm"
+autowrap = true
