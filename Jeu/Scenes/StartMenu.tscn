@@ -1,13 +1,18 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/StartMenu.cs" type="Script" id=1]
 [ext_resource path="res://Font/Presley.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/koenigshoffen-drone-900x450-357.jpg" type="Texture" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.631373, 0.686275, 0.690196, 1 )
 
 [sub_resource type="Theme" id=2]
 Panel/styles/panel = SubResource( 1 )
+
+[sub_resource type="StyleBoxTexture" id=10]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 900, 450 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 60
@@ -69,6 +74,7 @@ script = ExtResource( 1 )
 margin_right = 1916.0
 margin_bottom = 1084.0
 theme = SubResource( 2 )
+custom_styles/panel = SubResource( 10 )
 
 [node name="btnPlay" type="Button" parent="Panel"]
 margin_left = 547.0

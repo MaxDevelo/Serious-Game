@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Themes/Bar.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Icons/ecology.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Icons/dollar.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Icons/smyley.webp" type="Texture" id=4]
+[ext_resource path="res://Font/Presley.otf" type="DynamicFontData" id=5]
 
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
@@ -32,6 +33,11 @@ public class Bar : Panel
 //  }
 }
 "
+
+[sub_resource type="DynamicFont" id=4]
+size = 80
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
 
 [node name="Bar" type="Panel"]
 margin_left = 2.0
@@ -103,8 +109,18 @@ margin_bottom = 66.041
 theme = ExtResource( 1 )
 text = "0 €"
 
-[node name="pnlLastModification" type="Panel" parent="."]
-margin_left = 40.0
-margin_top = 445.0
-margin_right = 618.0
-margin_bottom = 1032.0
+[node name="screenLastModification" type="TextureRect" parent="."]
+margin_left = 62.0
+margin_top = 461.0
+margin_right = 642.0
+margin_bottom = 1050.0
+
+[node name="LblTitle" type="Label" parent="."]
+margin_left = 136.0
+margin_top = 373.0
+margin_right = 631.0
+margin_bottom = 489.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Tour précédent:"
+autowrap = true

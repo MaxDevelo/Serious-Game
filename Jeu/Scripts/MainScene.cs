@@ -1,12 +1,16 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using static Godot.Control;
 
 public class MainScene : Node2D
 {
+
+
     private Bar bar;
     private Global global;
     private Panel pnlChooseActivite, pnlEndDate, pnlEchap, pnlWinOrLose;
@@ -21,6 +25,8 @@ public class MainScene : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+
+
         currentPositionTheme = -1;
         parcheminDateClosed = GetNode<Button>("pnlMain/BtnCloseDate");
         parcheminDateOpen = GetNode<Button>("pnlMain/BtnOpenDate");
@@ -155,6 +161,7 @@ public class MainScene : Node2D
             if (i > 50 && i <= 60)
             {
                 theme = GD.Load<Theme>("res://Themes/tramway.tres");
+                myButton.Disabled = true;
                 buttonsTramWay.Add(myButton);
             }
             else if (i < 50)
@@ -184,6 +191,8 @@ public class MainScene : Node2D
     */
     public void onButtonPressed(Button myButton, int index)
     {
+        createScreenshot();
+
         if (buttonsFree[index])
         {
             pnlChooseActivite.Visible = true;
@@ -213,6 +222,20 @@ public class MainScene : Node2D
             }
         }
 
+    }
+
+    public void createScreenshot()
+    {
+
+        Viewport viewport = GetViewport();
+        Texture texture = viewport.GetTexture();
+
+        Godot.Image image = texture.GetData();
+        image.FlipY();
+        image = image.GetRect(new Rect2(0, 0, (float)(viewport.Size.x / 1.8), viewport.Size.y));
+
+        image.SavePng("user://screenshot.png");
+        bar.setScreen(image);
     }
 
     public void onActivitePressed(int index, String name, Boolean isActivity, String themeActivite, int ecology, int sociabilite, int money, Button btnActivite, Button myButton, int id)

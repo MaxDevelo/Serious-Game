@@ -42,7 +42,7 @@ public class Bar : Panel
     public void setEcology(int value)
     {
         // Display Ecology
-        Label lblEcology= GetNode("pnlEcology/lblEcology") as Label;
+        Label lblEcology = GetNode("pnlEcology/lblEcology") as Label;
         lblEcology.Text = value.ToString() + "%";
 
     }
@@ -50,12 +50,17 @@ public class Bar : Panel
     public void setSociabilite(int value)
     {
         // Display Sociabilite
-        Label lblSociabilite= GetNode("pnlSociabilite/lblSociabilite") as Label;
+        Label lblSociabilite = GetNode("pnlSociabilite/lblSociabilite") as Label;
         lblSociabilite.Text = value.ToString() + "%";
     }
-    
-    public void setScreen(String url)
+
+    public void setScreen(Image img)
     {
-        Panel pnl = GetNode("pnlLastModification") as Panel;
+        TextureRect textureRect = GetNode<TextureRect>("screenLastModification");
+        ImageTexture imageTexture = new ImageTexture();
+        imageTexture.Load("screenshot_map.png");
+        textureRect.Texture = imageTexture;
+        img.Resize(580, 580, Image.Interpolation.Bilinear);
+        imageTexture.CreateFromImage(img);
     }
 }
