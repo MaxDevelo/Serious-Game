@@ -82,9 +82,9 @@ La reterritorialisation est un phénomène qui se développe constamment au sein
 On peut prendre l’exemple de Koenigshoffen : 
 
 <div>
-  <img src="./img/visualisation_impact/img1.jpg" width="300" height="200" alt="Image 1">
-  <img src="./img/visualisation_impact/img2.jpg" width="300" height="200" alt="Image 2">
-  <img src="./img/visualisation_impact/img3.jpg" width="300" height="200" alt="Image 3">
+  <img src="./img/visualisation_impact/img1.jpg" width="290" height="200" alt="Image 1">
+  <img src="./img/visualisation_impact/img2.jpg" width="290" height="200" alt="Image 2">
+  <img src="./img/visualisation_impact/img3.jpg" width="290" height="200" alt="Image 3">
 </div>
 
 <br>
