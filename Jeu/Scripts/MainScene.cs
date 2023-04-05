@@ -9,7 +9,7 @@ public class MainScene : Node2D
 {
     private Bar bar;
     private Global global;
-    private Panel pnlChooseActivite, pnlEndDate, pnlEchap;
+    private Panel pnlChooseActivite, pnlEndDate, pnlEchap, pnlWinOrLose;
     private List<Button> buttonsTramWay;
     private List<Boolean> buttonsFree;
     private Label lblDate;
@@ -19,6 +19,8 @@ public class MainScene : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        pnlWinOrLose = GetNode<Panel>("pnlWinOrLose");
+        pnlWinOrLose.Visible = false;
         pnlInfoMaire = GetNode<Panel>("pnlInfoMaire");
         pnlInfoMaire.Visible = true;
         pnlEchap = GetNode<Panel>("pnlEchap");
@@ -102,7 +104,9 @@ public class MainScene : Node2D
 
     }
 
-
+    /*
+        Recommencer le jeu
+    */
 
     public void _on_btnRestart_pressed()
     {
@@ -380,5 +384,18 @@ public class MainScene : Node2D
             lblDate.Text = "Date: " + global.getDate();
             changeDate = false;
         }
+        if (global.getMoney() <= 0 || global.getEcology() <= 0 || global.getSociabilite() <= 0)
+        {
+            pnlEndDate.Visible = false;
+            pnlWinOrLose.Visible = true;
+            GetNode<Label>("pnlWinOrLose/lblWinOrLose").Text = "Vous avez perdu";
+            GetNode<Label>("pnlWinOrLose/lblRecap").Text = "Date: " +  global.getDate() + "\n\nRécapitulatif: \r" + "Argent: " + global.getMoney() + "€\n" + "Ecologie: " + global.getEcology() + "%\n" + "Sociabilité: " + global.getSociabilite() + "%";
+        }
+    }
+
+    public void _on_btnRestartWinorLose_pressed()
+    {
+        global.clearAll();
+        GetTree().ChangeScene("res://Scenes/Configuration.tscn");
     }
 }
