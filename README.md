@@ -159,7 +159,8 @@ Description des options permettant de paramétrer une partie.
 ### **Modèle conceptuel applicatif**
 Liste, MCD ou diagramme de classe décrivant le jeu, et en particulier les entités, en séparant ce qui est exposé au joueur de ce qui est interne au jeu.
 
----
+
+![UML](./img/uml.png)
 
 ### **Description des fonctionnalités**
 ---
