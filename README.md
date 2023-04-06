@@ -160,41 +160,167 @@ Description des options permettant de paramétrer une partie.
 Liste, MCD ou diagramme de classe décrivant le jeu, et en particulier les entités, en séparant ce qui est exposé au joueur de ce qui est interne au jeu.
 
 
-![UML](./img/uml.png)
+![UML](./img/uml.jpg)
 
 ### **Description des fonctionnalités**
 ---
 
-#### **Actions du joueur**
+### **Actions du joueur**
 
 Liste des actions possibles par le joueur. Peut être organisé en module.
+
+
+
+
+##### **Gestion des activités**
+Sélection des activités à développer dans un district du quartier. On compte avec la liste exhaustive suivante : 
++ Nouvelles activités économiques (ainsi que l’option d’étendre cette activité) : 
+- tout type d’usine (alimentaire, textile, automobile, électronique)
+- mine d’or
+- menuiserie
+- port
+- agriculture, pâturage
+- moulin
+
++ Activités écologiques : 
+- centre de recyclage
+- déchetterie
+- centre de compostage
+- jardins communautaires
+- plantation d’arbres
+
++ Activités sociales : 
+- bibliothèque
+- centre commercial/shopping center
+- bars/restaurants
+- salles de sport
+- centre culturel
+
 ##### **Gestion des tours**
 - Valider : Valider les actions réalisées au tour et passer au tour suivant
-##### **Gestion des activités**
-- Choix : 
-  - Sélectionner les activités à développer dans le quartier
-  - Choix du district dans lequel l’activité sera instaurée
 
-#### **Informations au joueur**
+
+
+### **Informations au joueur**
 Liste des informations présentées aux joueurs. Peut-être organisé en module.
 
 ##### **Gestion des tours**
-- Jauge sociale: le niveau de satisfaction des résidents dans le quartier
-- Jauge écologie: le niveau de respect envers l’écologie
-- Jauge économie: le niveau de puissance économique du quartier pour la ville
-##### **Gestion des informations**
-- Légende: sert à savoir à quoi correspondent les différentes cases.
-##### **Gestion des activités**
-- Choix entre plusieurs possibilités d’aménagement dans le quartier (usine, port, aéroport…)
+Jauge sociale: le niveau de satisfaction des résidents dans le quartier
+Jauge écologie: le niveau de respect envers l’écologie
+Jauge économie: le niveau de puissance économique du quartier pour la ville
 
-#### **Moteur interne**
+La jauge a comme unité des pourcentages. 
+Ici la liste exhaustive des calculs réalisés selon les choix possibles de l’utilisateur : 
++ Activités économiques :
+- Mine d’or [Social : +0% ; Écologie : -50% ; Économie : +70%]
+- Usine automobile [Social : +20% ; Écologie : -30% ; Économie : +50%]
+- Usine électronique [Social : +20% ; Écologie : -30% ; Économie : +50%]
+- Usine alimentaire [Social : +20% ; Écologie : -30% ; Économie : +50%]
+- Usine automobile [Social : +20% ; Écologie : -30% ; Économie : +50%]
+- Port [Social : +20% ; Écologie : -20% ; Économie : +40%]
+- Menuiserie [Social : +15% ; Écologie : -10% ; Économie : +30%]
+- Agriculture [Social : +10% ; Écologie : -10% ; Économie : +30%]
+- Moulins [Social : +10% ; Écologie : -5% ; Économie : +15%]
+
++ L’extension de toute activité compte par défaut avec les pourcentages suivants : 
+- Extension [Social : +5% ; Écologie : -15% ; Économie : +30%]
+
++ Activités écologiques : 
+- Centre de recyclage [Social : -10% ; Écologie : +40% ; Économie : +5%]
+- Déchetterie [Social : +20% ; Écologie : +30% ; Économie : +5%]
+- Centre de compostage [Social : -10% ; Écologie : +30% ; Économie : -20%]
+- Jardins communautaires [Social : +20% ; Écologie : +30% ; Économie : -30%]
+- Plantation d’arbres [Social : +5% ; Écologie : +20% ; Économie : -15%]
+
++ Activités sociales : 
+- Bars/restaurants [Social : +30% ; Écologie : -20% ; Économie : +5%]
+- Bibliothèque [Social : +20% ; Écologie : -10% ; Économie : -20%]
+- Shopping center [Social : +20% ; Écologie : -30% ; Économie : +10%]
+- Salles de sport [Social : +20% ; Écologie : -30% ; Économie : +50%]
+- Centre culturel [Social : +15% ; Écologie : -10% ; Économie : -15%]
+
+
+À la fin du tour, les activités validés évoluent et s’élargissent vers d’autres districts. Le joueur verra la nouvelle map, et pourra faire des nouveaux choix (en fonction des choix précédents). Le fonctionnement derrière ce point sera expliqué plus tard (voir [Moteur interne](#moteur-interne))
+
+
+
+##### **Gestion des informations**
+- Légende: sert à savoir à quoi correspondent les différentes cases. Elle sera vue de forme de pop-up, et sera affichée en survolant les cases. Si la case est vide, elle ne montrera aucune information ; sinon, elle explicite le type d’activité qui se déroule au sein du hub.
+- Narrateur : le secrétaire du maire, M. Assog, aide le joueur à comprendre ses objectifs ; à travers des pop-ups, il explique les actions possibles ainsi que ses conséquences.
+
+#### **Gestion de l'historicité**
+- Screenshots des tours précédents : comme vu auparavant, l’historicité permet de comprendre l’impact de la reterritorialisation. Des screenshots permettent de consulter les choix des tours précédents. Ces photos montrent l’évolution des choix, ses conséquences, ainsi que l’adaptation des stratégies au territoire.
+
+
+
+
+### **Moteur interne**
 Liste des interactions entre les actions du joueur et les informations
 
 ##### **Gestion des tours**
-- Suivant les choix:
-  - Les différentes jauges vont être impactées (social, écologique, économique). Calcul des nouvelles jauges, addition et soustraction (selon les pourcentages définis dans notre modèle).
-- Validation:	
-  - Passer à la scène suivante (bond de quelques décennies). Ceci permet d’afficher l’évolution des différentes activités, son expansion à plusieurs districts et ses conséquences.
+- Impact des jauges (social, écologique, économique) : on calcule (addition et soustraction) l’impact du choix du joueur sur les jauges (selon les pourcentages déjà définis dans notre modèle).
+- Passer à la scène suivante (saut temporel) : Ceci permet d’afficher l’évolution des différentes activités, son expansion à plusieurs districts et ses conséquences. Visuellement, cette évolution est traduite par un étalement de la portée d’une activité (c’est-à-dire les cases propres à chaque activité) qu’on appellera “probabilité d’étalement”
+
+
+Le calcul sera fait selon l’activité choisie : 
+
++ Activités économiques  :
+- Mine d’or : probabilité de 0 à 2 cases par tour 
+- Usine automobile : probabilité de 1 à 3 cases par tour
+- Usine électronique : probabilité de 1 à 3 cases par tour
+- Usine alimentaire : probabilité de 1 à 3 cases par tour
+- Usine automobile : probabilité de 1 à 3 cases par tour
+- Port : probabilité de 0 à 2 cases par tour
+- Menuiserie : probabilité de 1 à 2 cases par tour
+- Agriculture : probabilité de 1 à 4 cases par tour
+- Moulins : probabilité de 0 à 2 cases par tour
+
++ L’extension de toute activité compte par défaut avec les probabilités suivantes : 
+- Extension : probabilité de 0 à 3 cases par tour
+
++ Activités écologiques : 
+- Centre de recyclage : probabilité de 0 à 2 cases par tour
+- Déchetterie : probabilité de 0 à 1 cases par tour
+- Centre de compostage : probabilité de 0 à 1 cases par tour
+- Jardins communautaires : probabilité de 1 à 3 cases par tour
+- Plantation d’arbres : probabilité de 0 à 2 cases par tour
+
++ Activités sociales : 
+- Bars/restaurants : probabilité de 1 à 2 cases par tour
+- Bibliothèque : probabilité de 0 à 1 cases par tour
+- Shopping center : probabilité de 1 à 3 cases par tour
+- Salles de sport : probabilité de 0 à 1 cases par tour
+- Centre culturel : probabilité de 1 à 2 cases par tour
+
+##### **Gestion des tours (pt.2)**
+Besoins nécessaires pour une activité : après avoir cliqué sur une activité, celle-ci compte avec des besoins pour se développer. Pour se développer et s’étaler, les activités ont besoin de fournisseurs (dans notre cas : fournisseurs de ressources, d’outils et de matériaux) ainsi que des services qui gèrent son développement.
+
+Ces éléments seront listés ci-dessous : 
+
++ Activités économiques  :
+- Mine d’or : 
+  - fournisseur d’outils, de machines pour creuser la terre
+  - centrale électrique
+  - experts souterrains
+- Usine alimentaire : 
+  - fournisseur de glace (bière), de matière première (aliments, graines)
+  - centrale électrique
+mécaniciens
+- Usine automobile/électronique/automobile ou port : 
+  - fournisseurs de matériaux processés (dérivés du métal)
+  - centrale électrique
+  - mécaniciens
+- Menuiserie :
+  - fournisseur de bois
+  - fournisseur d’outils, de machines
+  - mécaniciens
+- Agriculture/Ferme/Moulins : 
+  - terrain pour cultures/élevage/construction
+  - outils (engrais, aliment pour animaux)
+  - machines et outils (faux, tracteurs)
+
+Les éléments listés sont les besoins essentiels des activités?
+Les activités sociales et écologiques sont choisies par le joueur.
 
 ---
 
@@ -207,70 +333,68 @@ Décrire en détail un scénario qui s’appuie sur toutes les fonctionnalités 
 
 <br>
 
-Tout d’abord, le joueur doit choisir une map pour jouer sa partie. Une fois la map, les différents paramètres et la difficulté sélectionnée, la partie se lance.
+Tout d’abord, le joueur doit choisir une map pour jouer sa partie. La map est constituée de cases où le joueur peut interagir avec. Il existe 3 types de map : Petite (10 x 10 cases), Moyen (20 x 20 cases) ou Grand (30 x 30 cases). Il pourra de même choisir la saison (Hiver, Été, Automne ou Printemps). Une fois la map choisie, ainsi que les différents paramètres et la difficulté sélectionnée, la partie se lance.
 
-Prenons l’exemple avec une map ferroviaire : 
-
-Dans un premier temps, l**e joueur devra choisir l’activité principale à développer**. Il a le choix entre implanter une usine de voitures, une menuiserie ou une mine d’or. Ces trois options sont justifiées par la possibilité de développement industriel fourni par la ligne ferroviaire. 
+On étudie le quartier du Koenigshoffen, territoire impacté par l’implantation d’une ligne ferroviaire : 
 
 <br> 
 
+> Le premier tour commence.
 
-Le choix va influer sur les jauges (écologiques, sociales, économiques). Il choisit la case (district) initiale, où l’activité naîtra. **Le joueur sélectionne la mine d’or**. Il valide son choix.
+<br>
+
+Dans un premier temps, le joueur devra choisir l’activité principale à développer. Il a le choix entre implanter une usine à bière, une menuiserie ou une mine d’or. Ces trois options sont justifiées par la possibilité de développement industriel fourni par la ligne ferroviaire.
 
 <br>
 
-Par la suite, un saut temporel de plusieurs années a lieu. La map du joueur affiche alors **l’évolution de l’activité** : cette mine compte avec une expansion vers plusieurs districts (qui ensemble forment des hubs). En supplément, de nombreuses conséquences en découlent : la construction d’une mine entraîne le besoin de logement pour les travailleurs ; de même, des nouveaux services tels que la vente de bijoux sont créés…Selon chaque hub, des cases seront alors colorées, et la légende expliquera quel hub contient quelle activité. Les jauges seront aussi mises à jour.
+Le choix va influer sur les jauges (écologiques, sociales, économiques). Elles sont toutes initialisées à 50% : [Social : 50% ; Écologie : 50% ; Économie : 50%]. Il choisit la case (district) initiale pour implanter une activité. Le joueur sélectionne l’usine à bière. Il valide son choix.
 
 <br>
+Par la suite, un saut temporel de 25 ans a lieu. La map du joueur affiche alors l’évolution de l’activité : l’usine s’étend naturellement, et au cours de 25 ans elle vit une expansion vers plusieurs districts. Cette quantité est aléatoire : dans ce cas, l’usine à bière passe d’une case à trois cases. Les trois districts industriels forment alors un hub industriel.
+
+<br>
+
+En supplément, de nombreuses conséquences en découlent : 
+- Une usine de bière a besoin d’un fournisseur de graines (orge et blé), de glace et d’électricité. Tous ces éléments apparaîtront sur la map, avec ses propres districts.
+- La construction de l’usine entraîne le besoin de logement pour les travailleurs. Des zones habitables seront aussi développées sur la map.
+- Les jauges seront aussi mises à jour. Le jeu calcule les nouvelles valeurs de chaque jauge (valeur finale : [Social : 70% ; Écologie : 20% ; Économie : 90%])
+
 
 > Le tour est fini. 
 
 > Un nouveau tour commence.
 
 <br>
-
-Après avoir pris connaissance des changements, des nouveaux choix s'offrent au joueur : ouvrir un bar (enjeu social), agrandir sa mine (enjeu économique), mettre en place un centre de recyclage (enjeu écologique)…
-
-<br> 
-
-**Le joueur sélectionne le centre de recyclage**. Une fois le choix validé, un saut temporel a lieu à nouveau, et la map changera à nouveau. Le centre de recyclage sera visible, la zone habitable aura grandi, ainsi que la mine. La mine grandit rapidement, et par conséquent une partie de la mine est devenue inutilisable (car elle a été trop exploitée).
+Après avoir pris connaissance des changements, des nouveaux choix s'offrent au joueur : ouvrir un bar (enjeu social), agrandir sa mine (enjeu économique) ou mettre en place un centre de recyclage (enjeu écologique).
 
 <br>
+Le joueur cherche à faire beaucoup plus d’argent et sélectionne l’installation d’une mine d’or. Une fois le choix validé, un saut temporel a lieu, et la map change à nouveau. Le centre de recyclage sera visible (1 case), la zone habitable aura grandi (de 2 cases), ainsi que la nouvelle mine (de 3 cases). Cette dernière grandit rapidement. Les jauges seront calculées (valeur finale : [Social : 80% ; Écologie : 0% ; Économie : 100%]).
+
+<br>
+
+
 
 > Le tour est fini.
 
->Un nouveau tour commence.
+> Cependant, une des jauges est complètement vidée : Écologie 0%. Le joueur perd la partie, vu qu’il n’a pas su gérer les jauges, et doit recommencer.
 
-Un nouveau choix s’offre au joueur : construire un terrain de basket, agrandir sa mine ou planter des arbres sur la partie non exploitable de la mine. **Le joueur sélectionne d’agrandir la mine**. Le bond temporel est fait et le joueur rencontre à nouveau plusieurs changements (une zone habitable plus grande, une 2e bijouterie, et surtout une plus grande mine)...
 
 <br>
-
-Si les jauges sont toutes supérieures à 0 durant toute la partie, alors celle-ci est gagnée. Cependant, si uniquement des choix visant l’enjeu écologique sont faits, la partie sera perdue, car les autres jauges diminuent jusqu’à atteindre un pourcentage nul de 0%.
-
-<br>
-
-	
-Une partie n’est jamais identique vu que la map évolue aléatoirement : suivant une probabilité, une mine peut s’étendre de 1 à plusieurs cases, dans tous les sens, en respectant plusieurs critères qui figurent sur le modèle. Ce calcul est aléatoire, et fait varier les choix possibles, les activités et les formes des hubs entre chaque partie.
-
-
-#### **Scénarios complémentaires**
-Décrire moins précisément d’autres idées de scénarios.
-
-<br>
-
-Un scénario où le joueur est obligé de respecter une seule des jauges serait une autre possibilité : les choix seraient donc plus focalisés sur une optique particulière. Par exemple, si l’objectif est d’enrichir la ville, il va choisir d’agrandir la mine encore et encore, au lieu de peser les conséquences d’une décision plutôt écologique.
-
 <br>
 
 #### **Fonctionnalités additionnelles**
-Décrire ici les idées de fonctionnalités additionnelles. Cette partie ne doit servir qu’en dernier recours, pour transmettre ce qui n’a pas été inclus dans les fonctionnalités faute de temps.
+Un scénario où le joueur est obligé de respecter une seule des jauges serait une autre possibilité : les choix seraient donc plus focalisés sur une optique particulière. Si l’objectif est d’enrichir la ville, il va choisir d’agrandir la mine encore et encore, au lieu de peser les conséquences d’une décision plutôt écologique.
+
 
 <br>
+#### **Fonctionnalités additionnelles**
 
-- Annulation du développement d’une activité (ex : cessation de l’expansion d’une mine)
-- Voir historique des parties précédentes : ceci permet de voir l’historicité des changements au cours de plusieurs parties. Ceci permet de voir la différence entre chaque partie, et comment chaque choix a une conséquence différente selon le territoire
-- Faire des liens avec d’autres quartiers/villes (si on traite Koenigshoffen, on peut faire des liens avec Strasbourg et Montagne Verte)
+ - Annulation du développement d’une activité : si une activité a été développée et le joueur ne veut plus son extension, il pourra l’annuler. 
+On fait référence à toutes les activités économiques listées auparavant.
+- Voir historique des parties précédentes : ceci permet de voir l’historicité des changements au cours de plusieurs parties. Ceci permet de voir la différence entre chaque partie, et comment chaque choix a une conséquence différente selon le territoire.
+- Faire des liens avec d’autres quartiers/villes (si on traite Koenigshoffen, on peut faire des liens avec Strasbourg et Montagne Verte).
+- Ajout de contraintes géographiques sur le territoire (vallées, caves, montagnes, mer).
+- Événements historiques tels que les guerres mondiales ou les crises économiques impactent l’étalée des activités.
 
 --- 
 ---

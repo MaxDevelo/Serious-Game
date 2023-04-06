@@ -34,6 +34,8 @@ package model {
         + getMoney() : Integer
         + getEcology() : Integer
         + getSociability() : Integer
+        + calculeImpact()
+        + changeJauge(money : Integer, ecology : Integer, sociability : Integer)
     }
 
     class Date {
@@ -75,7 +77,7 @@ package controller {
 }
 
 package model {
-    Jauge <|.. JaugeObserver : "prévient la vue des changements"
+    Jauge <|.. JaugeObserver : "observe et notifie"
     Game *-- Date : "possède"
     Game *-- Jauge : "possède"
 }
