@@ -25,7 +25,9 @@
   - [Theo_Willem](./Evaluation_T2/Evaluation-T4-Theo_Willem.md)
   - [Wassim_Bououdina](./Evaluation_T2/Evaluation-T4-Wassim_Bououdina.md)
 
-  
+<br>
+
+LANCER LA CARTE 10x10 ! Elle compte avec toutes les fonctionnalités, à différence des cartes 20x20 et 30x30.
 ---
 ---
 ## Présentation du projet
