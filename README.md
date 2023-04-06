@@ -41,21 +41,52 @@ Le joueur doit être en mesure de développer des stratégies d'adaptation aux c
 <br> 
 
 
+#### **Définitions**
+La **reterritorialisation** correspond au processus par lequel les personnes renforcent leur lien et contrôle sur le territoire. Celui-ci subit des changements à cause des nombreuses activités, fragmentées sur toute sa surface. Les changements sont de type social, économique et écologique. 
+
+En outre, elle **permet aux individus de profiter du territoire et adapter de nombreuses activités économiques selon les possibilités disponibles ; par la suite, le développement de ces activités entraîne des enjeux socio-économiques qui vont impacter l'environnement.** Ces activités s'étalent à partir de sa création en fonction de sa **rentabilité** et les **ressources** disponibles.
+
+La reterritorialisation sera représentée par l’étude du quartier Est du Koenigshoffen, qui se voit pourvu d’une nouvelle ligne ferroviaire (et une gare) passant par un territoire vide et exploitable.
+
+
 ##### **Traitement du territoire**
-Le territoire est divisé en plusieurs districts. Ces districts se développent progressivement avec l’avancée du temps : une activité (commerciale, sociale) est née dans un district. Si son fonctionnement est réussi, elle peut s’étendre au fur et à mesure du temps à d’autres districts. Ceci crée plusieurs **hubs** qui concentrent chacun une activité.
-Le territoire est alors impacté dans tous ses domaines : le nombre d’emplois, la quantité d’habitants, etc… 
-On peut prendre l’exemple de Paris : anciennement, cette capitale comptait un centre-ville et sa périphérie. Suite à l’expansion du territoire, les faubourgs se sont rattachés à la ville, et des nombreux hubs se sont fondés. 
+Le territoire est divisé en plusieurs districts. Ces districts se développent progressivement avec l’avancée du temps : en un premier temps, le territoire est vide. L’inauguration de la gare permet aux acteurs de développer une première activité.
+
+Cette activité est née dans un district. Elle utilise les ressources disponibles pour créer un produit. La liste exhaustive d’activités économiques possibles est la suivante: 
+- tout type d’usine (alimentaire, textile, transport, électronique) : possible si de la matière première est disponible
+- mine d’or : possible si des caves sont exploitables
+- menuiserie : possible si une source de bois proche est exploitable
+- port, moulins : possible si une source d’eau exploitable est proche
+- agriculture, élevage : possible si le sol et les animaux sont exploitables
+- gare, lignes ferroviaires (déjà instaurée au Koenigshoffen) : possible si un espace ouvert est exploitable
+
+Si son fonctionnement est réussi, cette activité peut s’étendre au fur et à mesure du temps à d’autres districts. Ceci crée plusieurs hubs qui concentrent chacun une activité. Le territoire est alors impacté dans tous ses domaines : le nombre d’emplois, la quantité d’habitants, le niveau de pollution, le revenu total.
+On peut prendre l’exemple de Paris : anciennement, cette capitale comptait un centre-ville et sa périphérie. Suite à l’expansion des activités commerciales du centre-ville, les faubourgs se sont rattachés à la ville, et de nombreux hubs se sont fondés. 
+
+
 
 ##### **Activités au seins des hubs**
-Le joueur est chargé de choisir et développer une activité économique, qui sera le point focal de l’activité commerciale du quartier. Cette fonction est choisie selon les **possibilités du territoire**, c'est-à-dire les ressources disponibles sur le territoire. La reterritorialisation cherche à produire **local**, et renforcer la résilience face aux changements économiques.
- Néanmoins, l’activité doit être dynamique, et ne jamais stagner. La **perspective relationnelle** permet d’adapter et transformer l’activité pour en tirer le meilleur profit au cours du temps (ex : si une mine d’or est vidée, on adapte l’espace laissé derrière). 
+Le joueur est chargé de choisir et développer une (ou plusieurs) activité(s) économique(s). Ces fonctions sont choisies selon les possibilités du territoire, c'est-à-dire les ressources disponibles sur le territoire. La reterritorialisation cherche à produire local, et renforcer la résilience face aux changements économiques.
+ Néanmoins, l’activité doit être dynamique, et ne jamais stagner. La perspective relationnelle permet d’adapter et transformer l’activité pour en tirer le meilleur profit au cours du temps. Si une activité devient obsolète et/ou ne peut plus être développée, une action peut être exercée sur la zone de cette activité ; de cette façon, l’activité globale est ajustée reste dynamique.
 
-Le développement de cette activité entraîne de nombreuses répercussions socio économiques :
-- le développement d’une zone habitable, de communautés…
-- impact écologique, pollution et décontamination…
-- génération de revenus ($), investissements,  flux d’exportation…
+Le développement de cette activité entraîne de nombreuses répercussions socio économiques : <br>
++ Économiques
+- génération de revenus ($)
+- nouveaux commerces
+- investissements locaux/externes
+- flux d’exportation/importation <br>
++ Sociales : 	
+- le développement d’une zone habitable
+- le développement de communautés
+- zones de loisirs
+- associations de résidents
 
-Ces conséquences sont divisées selon les différents types d’enjeux qui composent la reterritorialisation.
++ Écologiques 	
+- niveau moyen/élevé de pollution (zone industrielle)
+- actions de décontamination/prévention
+
+La reterritorialisation est composée de différents types d’enjeux, qui s'étendent dans plusieurs domaines. 
+
 
 ---
 ##### **Enjeux de la reterritorialisation**
@@ -73,7 +104,7 @@ Enjeu écologique :
 
 Enjeu économique : 
 - Nouvelles activités économiques : un secteur développe une activité commerciale, et plusieurs branches sont nées à partir de celle-ci. Des magasins et business qui dépendent de cette activité sont constitués. On prend l’exemple de la mine d’or, qui donne naissance à un commerce de bijoux rares, des bijouteries, des musées…
-- **Résilience** de l’économie : la reterritorialisation permet de renforcer la résilience locale de l’économie face aux chocs économiques provenant des marchés extérieurs. La diversification économique qui s’enracine dans les différents hubs de la ville permet de subir tout impact extérieur, et de rester stable.
+- **Résilience de l’économie** : la reterritorialisation permet de renforcer la résilience locale de l’économie face aux chocs économiques provenant des marchés extérieurs. La diversification économique qui s’enracine dans les différents hubs de la ville permet de subir tout impact extérieur, et de rester stable.
 
 ---
 ##### **Visualisation de l’impact**
@@ -90,6 +121,11 @@ On peut prendre l’exemple de Koenigshoffen :
 <br>
 Dans ces schémas (avec 100 ans d’écart entre chacun), l’activité agricole qui a été instaurée auparavant a donné lieu à une grande quantité de zones agricoles et industrielles, ainsi que de flux de commerce. L’impact de la reterritorialisation est visible.
 
+<br>
+
+On peut décrire l’effet d’un choix de développement comme “aléatoire” : il pourra s’étendre et agrandir grandement, moyennement ou à courte échelle. Cependant, ceci n’est pas prévisible au préalable. Si l’activité est rentable, elle continuera à grandir ; elle pourra aussi devenir obsolète ou diminuer son profit. L’historicité permet d’étudier ces facteurs, et en tirer un avantage pour les prochains choix.
+
+
 ---
 ### **Description du jeu**
 ---
@@ -101,20 +137,22 @@ Description du déroulement d’une partie : début, déroulement et fin
 
 La partie commence avec la mise en place d’un quartier, où le joueur peut choisir une activité à instaurer. Cette activité se développe dans un district, qui correspond à une case sur la map.
 
-Pour chaque tour, la scène avance de quelques décennies. Le joueur constatera alors les conséquences des choix réalisés au tour précédent (ex: une usine cause l’installation d’une zone habitable). Par la suite, il devra choisir une nouvelle activité à mettre en place. Les districts propres à chaque activité seront rassemblés en hubs.
-
-Les choix impactent trois jauges différentes (économie, sociabilité, écologie). Le joueur doit gérer ses choix de développement pour gérer l’impact sur les jauges. 
+Pour chaque tour, la scène avance de 25 ans. Le joueur constatera alors le développement des choix réalisés au tour précédent : l’activité qui a été choisie s’étend sur le territoire et implante ses besoins dans plusieurs districts (ces besoins diffèrent selon chaque activité, et seront traités concrètement au long du document). 
+ Par la suite, il devra choisir une nouvelle activité à mettre en place. Les activités en expansion seront rassemblées en hubs. Les choix impactent (de même) trois jauges différentes (économie, sociabilité, écologie). Le joueur doit gérer ses choix de développement pour contrôler l’impact sur les jauges. 
 
 Le jeu fini lorsque le nombre de tours visé est atteint, OU lorsqu’une des jauges est complètement vide. On affiche alors des images qui montrent le progrès des activités dans le quartier du joueur.
+
 
 #### **Paramétrage d’une partie**
 Description des options permettant de paramétrer une partie.
 
-- Type de map : sélection entre environnement ferroviaire, maritime, routes…
-- Difficulté : impacte la jauge, la génération des districts…
+- Type de map : sélection entre environnement ferroviaire, maritime ou routier
+- Difficulté : impacte la jauge et la génération des districts
+- Saison : chaque saison impacte de façon différente l’activité
 - Nombre de districts : taille de la map
-- Nombre de tours : nombre de tours de jeu, chaque tour correspondant à une période déterminée (quelques décennies)
-- Nombre de joueurs : option multijoueurs, co-op et versus
+- Nombre de tours : nombre de tours de jeu, chaque tour correspondant à une période déterminée (dans ce cas : 25 ans)
+- Nombre de joueurs : option multijoueurs (co-op et versus)
+
 
 ---
 

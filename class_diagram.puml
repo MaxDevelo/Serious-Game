@@ -1,0 +1,97 @@
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+hide enum methods
+
+title <font color="red">Diagramme de classe </font> <font color="blue">HAN23-C</font> <font color="green">2023</font>
+
+package model {
+    class Jauge  {
+        - moneyJauge : Integer
+        - ecologyJauge : Integer
+        - sociabilityJauge : Integer
+        + getMoney() : Integer
+        + getEcology() : Integer
+        + getSociability() : Integer
+        + setMoney(value : Integer)
+        + setEcology(value : Integer)
+        + setSociability(value : Integer)
+        + setImage(image : Image)
+        + notifyObserver()
+    }
+
+    class JaugeObserver {
+        + update(jauge : Jauge)
+    }
+
+
+    class Game {
+        - money : Integer
+        - ecology : Integer
+        - sociability : Integer
+        - instance : Game
+        + getInstance() : Game
+        + getMoney() : Integer
+        + getEcology() : Integer
+        + getSociability() : Integer
+    }
+
+    class Date {
+        - date : Integer
+        + getDate(): Integer
+        + setDate(): void
+    }
+}
+
+package view {
+    class MainScene {
+        + generateMap()
+        + generateJauge()
+        + createScreenshots()
+        + colorRandom(position : Integer, color : Color)
+        + clearGridContainer()
+    }
+
+    class ViewElements {
+        - buttons : List<Button>
+        + getButtons(position : Integer) : List<Button>
+        + onbuttonPressed() 
+        + onActivityPressed()
+
+    }
+}
+
+MainScene ..> ViewElements : "possède"
+
+package controller {
+    class GameController {
+        + modifyGlobal()
+        + modifyJauge(money : Integer, ecology : Integer, sociability : Integer)
+        + launchGame()
+        + restartGame()
+        + endGame()
+    }
+
+}
+
+package model {
+    Jauge <|.. JaugeObserver : "prévient la vue des changements"
+    Game *-- Date : "possède"
+    Game *-- Jauge : "possède"
+}
+
+class Main {
+    + main()
+}
+
+Main -> GameController : "créer"
+
+
+GameController -> Game : "créer"
+GameController -> Game : "modifie"
+
+
+MainScene ..> JaugeObserver : "implémente"
+ViewElements -> GameController : "appelle"
+
+@enduml
