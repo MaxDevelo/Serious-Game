@@ -387,13 +387,9 @@ Le joueur cherche à faire beaucoup plus d’argent et sélectionne l’installa
 
 
 <br>
-<br>
-
-#### **Fonctionnalités additionnelles**
-Un scénario où le joueur est obligé de respecter une seule des jauges serait une autre possibilité : les choix seraient donc plus focalisés sur une optique particulière. Si l’objectif est d’enrichir la ville, il va choisir d’agrandir la mine encore et encore, au lieu de peser les conséquences d’une décision plutôt écologique.
-
 
 <br>
+
 #### **Fonctionnalités additionnelles**
 
  - Annulation du développement d’une activité : si une activité a été développée et le joueur ne veut plus son extension, il pourra l’annuler. 
