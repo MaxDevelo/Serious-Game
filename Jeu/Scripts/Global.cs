@@ -18,7 +18,7 @@ public class Global : Node
 
     public override void _Ready()
     {
-        date = 1900;
+        date = 1925;
         index = 0;
     }
     public void setIndexMap(int index)
@@ -69,6 +69,15 @@ public class Global : Node
         List<Activite> activites = activiteArray.ToObject<List<Activite>>();
 
         return activites;
+    }
+    public List<News> retrieveDataNews()
+    {
+        string json = System.IO.File.ReadAllText("data/news.json");
+        JObject jsonData = JsonConvert.DeserializeObject<JObject>(json);
+        JArray newsArray = (JArray)jsonData.GetValue("news");
+        List<News> news = newsArray.ToObject<List<News>>();
+
+        return news;
     }
 
     public Global getInstance()
