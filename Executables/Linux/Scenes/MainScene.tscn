@@ -1,0 +1,573 @@
+[gd_scene load_steps=51 format=2]
+
+[ext_resource path="res://Scripts/MainScene.cs" type="Script" id=1]
+[ext_resource path="res://Scenes/Bar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Font/Presley.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Font/Presley.otf" type="DynamicFontData" id=4]
+[ext_resource path="res://Assets/page.png" type="Texture" id=5]
+[ext_resource path="res://Assets/sky.png" type="Texture" id=6]
+[ext_resource path="res://Themes/Maire/Maire_base.tres" type="Theme" id=7]
+[ext_resource path="res://Assets/medium.png" type="Texture" id=8]
+[ext_resource path="res://Assets/closed.png" type="Texture" id=9]
+[ext_resource path="res://Themes/lblinfobtn.tres" type="Theme" id=10]
+[ext_resource path="res://Assets/journal.png" type="Texture" id=11]
+[ext_resource path="res://Assets/news_icon.png" type="Texture" id=12]
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="Theme" id=2]
+Panel/styles/panel = SubResource( 6 )
+
+[sub_resource type="StyleBoxFlat" id=37]
+bg_color = Color( 0.309804, 0.309804, 0.309804, 1 )
+
+[sub_resource type="StyleBoxTexture" id=35]
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 1077, 1397 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 50
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxTexture" id=36]
+texture = ExtResource( 9 )
+region_rect = Rect2( 0, 0, 1157, 314 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.733333, 0.733333, 0.733333, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="DynamicFont" id=8]
+size = 100
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 100
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.74902, 0.184314, 0.184314, 0.705882 )
+border_width_left = 6
+border_width_bottom = 6
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_right = 60
+
+[sub_resource type="StyleBoxTexture" id=12]
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 320, 256 )
+
+[sub_resource type="DynamicFont" id=13]
+size = 50
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0.847059, 0.823529, 0.623529, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0.937255, 0.92549, 0.639216, 1 )
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="DynamicFont" id=15]
+size = 96
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=16]
+size = 60
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=17]
+bg_color = Color( 0.94902, 0.94902, 0.94902, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="Theme" id=18]
+Panel/styles/panel = SubResource( 17 )
+
+[sub_resource type="DynamicFont" id=21]
+size = 100
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=25]
+bg_color = Color( 1, 0, 0, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id=22]
+bg_color = Color( 0.960784, 0.321569, 0.321569, 0.901961 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="DynamicFont" id=23]
+size = 100
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=24]
+bg_color = Color( 0.831373, 0.831373, 0.831373, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id=27]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="DynamicFont" id=28]
+size = 40
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=29]
+bg_color = Color( 1, 1, 1, 0.752941 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="DynamicFont" id=30]
+size = 150
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=31]
+size = 50
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=32]
+size = 100
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=33]
+bg_color = Color( 0.741176, 0.698039, 0.698039, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id=34]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxTexture" id=38]
+texture = ExtResource( 12 )
+region_rect = Rect2( 0, 0, 480, 480 )
+modulate_color = Color( 1, 1, 1, 0.65098 )
+
+[sub_resource type="StyleBoxTexture" id=39]
+texture = ExtResource( 12 )
+region_rect = Rect2( 0, 0, 480, 480 )
+
+[sub_resource type="StyleBoxTexture" id=40]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 577, 433 )
+
+[sub_resource type="DynamicFont" id=41]
+size = 30
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=42]
+size = 60
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxTexture" id=43]
+
+[sub_resource type="DynamicFont" id=44]
+size = 50
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=45]
+size = 50
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="pnlMain" type="Panel" parent="."]
+margin_right = 1917.0
+margin_bottom = 1077.0
+theme = SubResource( 2 )
+
+[node name="Panel" type="Panel" parent="pnlMain"]
+margin_right = 1052.0
+margin_bottom = 1076.0
+custom_styles/panel = SubResource( 37 )
+
+[node name="gridMap" type="GridContainer" parent="pnlMain"]
+margin_left = 8.0
+margin_right = 1054.0
+margin_bottom = 1073.0
+columns = 20
+
+[node name="BtnOpenDate" type="Button" parent="pnlMain"]
+margin_left = 6.0
+margin_top = 3.0
+margin_right = 244.0
+margin_bottom = 275.0
+custom_styles/hover = SubResource( 35 )
+custom_styles/pressed = SubResource( 35 )
+custom_styles/focus = SubResource( 35 )
+custom_styles/disabled = SubResource( 35 )
+custom_styles/normal = SubResource( 35 )
+
+[node name="lblDate" type="Label" parent="pnlMain/BtnOpenDate"]
+margin_left = -8.0
+margin_top = 105.0
+margin_right = 253.0
+margin_bottom = 249.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Date: 1800
+"
+align = 1
+
+[node name="BtnCloseDate" type="Button" parent="pnlMain"]
+margin_right = 247.0
+margin_bottom = 52.0
+custom_styles/hover = SubResource( 36 )
+custom_styles/pressed = SubResource( 36 )
+custom_styles/focus = SubResource( 36 )
+custom_styles/disabled = SubResource( 36 )
+custom_styles/normal = SubResource( 36 )
+
+[node name="Bar" parent="." instance=ExtResource( 2 )]
+margin_left = 1139.0
+margin_top = 35.0
+margin_right = 1865.0
+margin_bottom = 412.0
+
+[node name="pnlChooseActivite" type="Panel" parent="."]
+visible = false
+margin_left = 318.0
+margin_top = 166.0
+margin_right = 1522.0
+margin_bottom = 894.0
+custom_styles/panel = SubResource( 7 )
+
+[node name="lblTitle" type="Label" parent="pnlChooseActivite"]
+margin_left = 220.0
+margin_top = 90.0
+margin_right = 1012.0
+margin_bottom = 182.0
+custom_fonts/font = SubResource( 8 )
+text = "Que voulez-vous choisir ?"
+
+[node name="btnClose" type="Button" parent="pnlChooseActivite"]
+margin_left = 1050.0
+margin_top = 6.0
+margin_right = 1196.0
+margin_bottom = 138.0
+custom_fonts/font = SubResource( 9 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/focus = SubResource( 10 )
+custom_styles/disabled = SubResource( 10 )
+custom_styles/normal = SubResource( 10 )
+text = "X"
+
+[node name="gridActivite" type="GridContainer" parent="pnlChooseActivite"]
+margin_left = 170.0
+margin_top = 212.0
+margin_right = 1074.0
+margin_bottom = 690.0
+
+[node name="pnlEndDate" type="Panel" parent="."]
+visible = false
+margin_left = 3.0
+margin_top = -1.0
+margin_right = 1915.0
+margin_bottom = 1085.0
+custom_styles/panel = SubResource( 12 )
+
+[node name="Page" type="Sprite" parent="pnlEndDate"]
+position = Vector2( 947, 544 )
+scale = Vector2( 3.84667, 3.55308 )
+texture = ExtResource( 5 )
+
+[node name="btnContinue" type="Button" parent="pnlEndDate"]
+margin_left = 833.0
+margin_top = 777.0
+margin_right = 1157.0
+margin_bottom = 871.0
+mouse_default_cursor_shape = 2
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 13 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 14 )
+custom_styles/focus = SubResource( 14 )
+custom_styles/disabled = SubResource( 14 )
+custom_styles/normal = SubResource( 14 )
+text = "Avancer de 25 ans"
+
+[node name="lblTitle" type="Label" parent="pnlEndDate"]
+margin_left = 807.0
+margin_top = 210.0
+margin_right = 1142.0
+margin_bottom = 301.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 15 )
+text = "DATE: 1800"
+
+[node name="lblDesc" type="Label" parent="pnlEndDate"]
+margin_left = 725.0
+margin_top = 304.0
+margin_right = 1275.0
+margin_bottom = 748.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 16 )
+text = "mm"
+autowrap = true
+
+[node name="pnlEchap" type="Panel" parent="."]
+visible = false
+margin_left = 338.0
+margin_top = 274.0
+margin_right = 1512.0
+margin_bottom = 750.0
+theme = SubResource( 18 )
+
+[node name="btnQuit" type="Button" parent="pnlEchap"]
+margin_left = 242.0
+margin_top = 250.0
+margin_right = 918.0
+margin_bottom = 384.0
+custom_fonts/font = SubResource( 21 )
+custom_styles/hover = SubResource( 25 )
+custom_styles/pressed = SubResource( 22 )
+custom_styles/focus = SubResource( 22 )
+custom_styles/disabled = SubResource( 22 )
+custom_styles/normal = SubResource( 22 )
+text = "QUITTER"
+
+[node name="btnRestart" type="Button" parent="pnlEchap"]
+margin_left = 244.0
+margin_top = 76.0
+margin_right = 940.0
+margin_bottom = 210.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 23 )
+custom_styles/hover = SubResource( 24 )
+custom_styles/pressed = SubResource( 24 )
+custom_styles/focus = SubResource( 24 )
+custom_styles/disabled = SubResource( 24 )
+custom_styles/normal = SubResource( 24 )
+text = "RECOMMENCER"
+
+[node name="pnlInfoMaire" type="Panel" parent="."]
+visible = false
+margin_left = 1539.0
+margin_top = 580.0
+margin_right = 1928.0
+margin_bottom = 1081.0
+theme = ExtResource( 7 )
+
+[node name="pnlInfo" type="Panel" parent="pnlInfoMaire"]
+margin_left = -782.0
+margin_top = -76.0
+margin_right = -9.0
+margin_bottom = 272.0
+custom_styles/panel = SubResource( 27 )
+
+[node name="Label" type="Label" parent="pnlInfoMaire/pnlInfo"]
+margin_left = 48.0
+margin_top = 32.0
+margin_right = 725.0
+margin_bottom = 309.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 28 )
+autowrap = true
+
+[node name="pnlWinOrLose" type="Panel" parent="."]
+visible = false
+margin_left = 405.0
+margin_top = 164.0
+margin_right = 1644.0
+margin_bottom = 929.0
+custom_styles/panel = SubResource( 29 )
+
+[node name="lblWinOrLose" type="Label" parent="pnlWinOrLose"]
+margin_left = 207.0
+margin_top = 107.0
+margin_right = 1094.0
+margin_bottom = 247.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 30 )
+text = "VOUS AVEZ GAGNE !"
+
+[node name="lblRecap" type="Label" parent="pnlWinOrLose"]
+margin_left = 306.0
+margin_top = 249.0
+margin_right = 845.0
+margin_bottom = 594.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 31 )
+text = "RECAPE: "
+autowrap = true
+
+[node name="btnRestart" type="Button" parent="pnlWinOrLose"]
+margin_left = 367.0
+margin_top = 601.0
+margin_right = 880.0
+margin_bottom = 738.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 32 )
+custom_styles/hover = SubResource( 33 )
+custom_styles/pressed = SubResource( 34 )
+custom_styles/focus = SubResource( 34 )
+custom_styles/disabled = SubResource( 34 )
+custom_styles/normal = SubResource( 34 )
+text = "REJOUER"
+
+[node name="Label" type="Label" parent="."]
+margin_left = 844.0
+margin_top = 9.0
+margin_right = 1030.0
+margin_bottom = 76.0
+theme = ExtResource( 10 )
+text = "coucou"
+autowrap = true
+
+[node name="btnNews" type="Button" parent="."]
+margin_left = 910.0
+margin_top = -16.0
+margin_right = 1055.0
+margin_bottom = 112.0
+custom_styles/hover = SubResource( 38 )
+custom_styles/pressed = SubResource( 39 )
+custom_styles/focus = SubResource( 39 )
+custom_styles/disabled = SubResource( 39 )
+custom_styles/normal = SubResource( 39 )
+
+[node name="pnlNews" type="Panel" parent="."]
+margin_left = 384.0
+margin_top = 111.0
+margin_right = 1442.0
+margin_bottom = 824.0
+custom_styles/panel = SubResource( 40 )
+
+[node name="desc" type="Label" parent="pnlNews"]
+margin_left = 153.0
+margin_top = 316.0
+margin_right = 929.0
+margin_bottom = 577.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 41 )
+text = "mmmmm"
+
+[node name="BtnQuit" type="Button" parent="pnlNews"]
+margin_left = 891.0
+margin_top = 81.0
+margin_right = 954.0
+margin_bottom = 141.0
+custom_colors/font_color = Color( 1, 0, 0, 0.862745 )
+custom_colors/font_color_hover = Color( 1, 0, 0, 0.705882 )
+custom_fonts/font = SubResource( 42 )
+custom_styles/hover = SubResource( 43 )
+custom_styles/pressed = SubResource( 43 )
+custom_styles/focus = SubResource( 43 )
+custom_styles/disabled = SubResource( 43 )
+custom_styles/normal = SubResource( 43 )
+text = "X"
+
+[node name="date" type="Label" parent="pnlNews"]
+margin_left = 482.0
+margin_top = 190.0
+margin_right = 589.0
+margin_bottom = 244.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 44 )
+text = "1925"
+
+[node name="title" type="Label" parent="pnlNews"]
+margin_left = 162.0
+margin_top = 244.0
+margin_right = 922.0
+margin_bottom = 311.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 45 )
+text = "Titire"
+autowrap = true
+
+[connection signal="pressed" from="pnlMain/BtnOpenDate" to="." method="_on_BtnCloseDate_pressed"]
+[connection signal="pressed" from="pnlMain/BtnCloseDate" to="." method="_on_BtnOpenDate_pressed"]
+[connection signal="pressed" from="pnlWinOrLose/btnRestart" to="." method="_on_btnRestartWinorLose_pressed"]
+[connection signal="pressed" from="btnNews" to="." method="_on_btnNews_pressed"]
+[connection signal="pressed" from="pnlNews/BtnQuit" to="." method="_on_BtnQuit_News_pressed"]

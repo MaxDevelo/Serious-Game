@@ -1,0 +1,34 @@
+{
+    "news":[
+        {
+            "id":0,
+            "title":"Début difficile après la guerre",
+            "description":"-Crise économique \n-Apparition du cinéma \n-1ère guerre Mondiale",
+            "date":"1900-1925"
+        },
+        {
+            "id":1,
+            "title":"Seconde Guerre Mondiale",
+            "description":"-Blitzkrieg \n-Bataille de Stalingrad \n-Bombe atomique d'Hiroshima",
+            "date":"1925-1950"
+        },
+        {
+            "id":2,
+            "title":"Début de la Guerre Froide",
+            "description":"-Bloc de l'Est vs. Bloc de l'Ouest \n-Crise de Cuba",
+            "date":"1950-1975"
+        },
+        {
+            "id":3,
+            "title":"Chute du Mur de Berlin",
+            "description":"-Réunification de l'Allemagne \n-Chute de l'Union Soviétique",
+            "date":"1975-2000"
+        },
+        {
+            "id":4,
+            "title":"L'ère du numérique",
+            "description":"-Lancement de Facebook \n-Apparition des smartphones \n-Premier iPhone",
+            "date":"2000-2025"
+        }
+    ]
+}
