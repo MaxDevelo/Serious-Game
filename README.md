@@ -25,7 +25,9 @@
   - [Theo_Willem](./Evaluation_T2/Evaluation-T4-Theo_Willem.md)
   - [Wassim_Bououdina](./Evaluation_T2/Evaluation-T4-Wassim_Bououdina.md)
 
-  
+<br>
+
+LANCER  LA CARTE DE TAILLE 10x10! Les autres cartes ne comptent pas (encore) avec toutes les fonctionnalités.
 ---
 ---
 ## Présentation du projet
