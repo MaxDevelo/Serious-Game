@@ -17,7 +17,14 @@
 <br>
 
 - Liens vers les évaluations T4 :
-  - [évaluation](./Evaluation-T4.md)
+  - [Aymeric_Le_Roux](./Evaluation_T2/Evaluation-T4-Aymeric_Le_Roux.md)
+  - [Eliott_Schott](./Evaluation_T2/Evaluation-T4-Eliott_Schott.md)
+  - [Joseph_Granier](./Evaluation_T2/Evaluation-T4-Joseph_Granier.md)
+  - [Karim_El_Kaid](./Evaluation_T2/Evaluation-T4-Karim_El_Kaid.md)
+  - [Romain_Parmentelot](./Evaluation_T2/Evaluation-T4-Romain_Parmentelot.md)
+  - [Theo_Willem](./Evaluation_T2/Evaluation-T4-Theo_Willem.md)
+  - [Wassim_Bououdina](./Evaluation_T2/Evaluation-T4-Wassim_Bououdina.md)
+
   
 ---
 ---
@@ -400,10 +407,7 @@ On fait référence à toutes les activités économiques listées auparavant.
 ---
 ## TODO
 
-- [ ] 1
-- [ ] 2
-
-
+Lien vers notre [TODO](./TODO.md).
 
 
 --- 
