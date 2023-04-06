@@ -122,8 +122,7 @@ Description des options permettant de paramétrer une partie.
 Liste, MCD ou diagramme de classe décrivant le jeu, et en particulier les entités, en séparant ce qui est exposé au joueur de ce qui est interne au jeu.
 
 
-
-![image1](./img/MCD.PNG)
+![MCD](./img/mcd.PNG)
 
 ### **Description des fonctionnalités**
 ---
