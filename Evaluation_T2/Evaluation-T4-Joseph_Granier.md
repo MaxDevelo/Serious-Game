@@ -23,8 +23,9 @@ Les étapes du projet tuteuré T2 sont les suivantes :
 
 # Propositions d'amélioration du jeu
 
-- Proposition 1
-- Proposition 2
+- Plus de tours car on ne voit pas la difficulté
+- Des evenements aléatoires qui peuvent influer sur les jauges
+- De nouveaux environnement comme des rivieres ou desert avec de nouvelles activités
 
 ## Grille d'évaluation T2 (à remplir par les membres du groupe T4)
 
